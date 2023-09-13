@@ -1,12 +1,12 @@
 import React from 'react'
 import { FaUser, FaShoppingCart } from 'react-icons/fa';
-import { GiHamburgerMenu } from 'react-icons/gi';
 import { AiOutlinePercentage, AiFillHeart } from 'react-icons/ai';
 import { FiSearch } from 'react-icons/fi';
 import { RiBarChartFill } from 'react-icons/ri';
 
 
 import styles from '@/components/header/Header.module.scss'
+import NavBar from './NavBar';
 
 const Header = () => {
   return (
@@ -32,7 +32,7 @@ const Header = () => {
 
         <div className={styles.header_wrapper_btm}>
           <div className={styles.header_wrapper_btm__catalog}>
-            <button> <GiHamburgerMenu color='#fff' /> Каталог товаров</button>
+            <NavBar />
           </div>
           <p className={styles.header_wrapper_btm__tools}><AiOutlinePercentage color='#d60000' /> Акции</p>
           <div className={styles.header_wrapper_btm__search}>
