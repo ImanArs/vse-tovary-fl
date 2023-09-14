@@ -5,7 +5,7 @@ import Image from 'next/image';
 const Footer = () => {
     return (
         <>
-            <div className="bg-stone-300 flex justify-between px-10 h-10 gap-6">
+            <div className="bg-stone-300 flex justify-between px-10 py-2 h-10 gap-6">
                 <div className='flex'>
                     <Image
                         src="/next.svg"

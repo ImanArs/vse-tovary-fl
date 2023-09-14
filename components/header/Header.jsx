@@ -6,7 +6,9 @@ import { FiSearch } from 'react-icons/fi';
 import { RiBarChartFill } from 'react-icons/ri';
 
 
+
 import styles from '@/components/header/Header.module.scss'
+import Link from 'next/link';
 
 const Header = () => {
   return (
@@ -42,8 +44,8 @@ const Header = () => {
             </form>
           </div>
           <p className={styles.header_wrapper_btm__tools}><RiBarChartFill color='#d60000' /> Сравнение</p>
-          <p className={styles.header_wrapper_btm__tools}><AiFillHeart color='#d60000' /> Избранное</p>
-          <p className={styles.header_wrapper_btm__tools}><FaShoppingCart color='#d60000' /> Корзина</p>
+          <p className={styles.header_wrapper_btm__tools}><AiFillHeart color='#d60000' /> <Link  href="/">Избранное</Link></p>
+          <p className={styles.header_wrapper_btm__tools}><FaShoppingCart color='#d60000' /><Link  href="/basket"> Корзина </Link></p>
         </div>
       </div>
     </header>
