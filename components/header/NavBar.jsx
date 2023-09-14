@@ -20,7 +20,7 @@ const NavBar = () => {
 
   return (
     <div onMouseLeave={() => setHovered(false)} onMouseEnter={() => setHovered(true)}>
-      <button ><GiHamburgerMenu color='#fff' /> Каталог товаров</button>
+      <button><GiHamburgerMenu color='#fff' /> Каталог товаров</button>
       <div>
         {mouseOn()}
       </div>
