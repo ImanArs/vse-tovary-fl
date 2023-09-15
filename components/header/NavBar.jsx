@@ -10,7 +10,6 @@ import styles from './Header.module.scss'
 const NavBar = () => {
   const [hovered, setHovered] = React.useState(false)
   const routesArr = useSelector((state) => state.routes.categoryRotes)
-  console.log(routesArr);
 
   return (
     <div className={styles.catalog_btn} onMouseLeave={() => setHovered(false)} onMouseEnter={() => setHovered(true)}>
