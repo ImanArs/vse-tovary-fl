@@ -1,0 +1,13 @@
+.sidebar {
+  @apply w-[400px] border border-[#000] p-[15px] rounded-[15px] flex flex-col ;
+  &_filter {
+    &__inputs {
+      input {
+        @apply w-[40%] border border-[#000]
+      }
+    }
+    &__btn {
+
+    }
+  }
+}

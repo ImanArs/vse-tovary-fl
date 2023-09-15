@@ -25,3 +25,8 @@ body {
     )
     rgb(var(--background-start-rgb));
 } */
+
+main {
+  min-height: 200vh;
+  @apply max-w-[1600px] w-[1392px] m-auto;
+}
