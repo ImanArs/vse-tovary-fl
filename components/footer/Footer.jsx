@@ -28,32 +28,32 @@ const Footer = () => {
                             <span className="text-base font-medium">О компании</span>
                             <ul className="block">
                                 <li>
-                                    <a href="#" class="hover:text-red-600 text-sm">
+                                    <a href="#" className="hover:text-red-600 text-sm">
                                         Реквизиты
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="hover:text-red-600 text-sm">
+                                    <a href="#" className="hover:text-red-600 text-sm">
                                         О нас
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="hover:text-red-600 text-sm">
+                                    <a href="#" className="hover:text-red-600 text-sm">
                                         Информация для инвесторов
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="hover:text-red-600 text-sm">
+                                    <a href="#" className="hover:text-red-600 text-sm">
                                         Сертификаты
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="hover:text-red-600 text-sm">
+                                    <a href="#" className="hover:text-red-600 text-sm">
                                         Производители
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="hover:text-red-600 text-sm">
+                                    <a href="#" className="hover:text-red-600 text-sm">
                                         Правовая информация
                                     </a>
                                 </li>
@@ -64,7 +64,7 @@ const Footer = () => {
                                 <span className="text-base font-medium">Акции</span>
                                 <ul>
                                     <li>
-                                        <a href="#" class="hover:text-red-600 text-sm">
+                                        <a href="#" className="hover:text-red-600 text-sm">
                                             Наши акции
                                         </a>
                                     </li>
@@ -74,17 +74,17 @@ const Footer = () => {
                                 <span className="text-base font-medium ">Компаниям</span>
                                 <ul>
                                     <li>
-                                        <a href="#" class="hover:text-red-600 text-sm">
+                                        <a href="#" className="hover:text-red-600 text-sm">
                                             Поставщикам
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" class="hover:text-red-600 text-sm">
+                                        <a href="#" className="hover:text-red-600 text-sm">
                                             Организациям
                                         </a>
                                     </li>
                                     <li>
-                                     <a href="#" class="hover:text-red-600 text-sm">
+                                     <a href="#" className="hover:text-red-600 text-sm">
                                             Франшиза
                                         </a>
                                     </li>
@@ -95,27 +95,27 @@ const Footer = () => {
                             <span className="text-base font-medium">Получение и оплата</span>
                             <ul>
                                 <li>
-                                    <a href="#" class="hover:text-red-600 text-sm">
+                                    <a href="#" className="hover:text-red-600 text-sm">
                                         Доставка курьером
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="hover:text-red-600 text-sm">
+                                    <a href="#" className="hover:text-red-600 text-sm">
                                         Доставка транспортной <br /> компанией
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="hover:text-red-600 text-sm">
+                                    <a href="#" className="hover:text-red-600 text-sm">
                                         Информация для инвесторов
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="hover:text-red-600 text-sm">
+                                    <a href="#" className="hover:text-red-600 text-sm">
                                         Самовывоз
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="hover:text-red-600 text-sm">
+                                    <a href="#" className="hover:text-red-600 text-sm">
                                         Способы оплаты
                                     </a>
                                 </li>
@@ -125,23 +125,23 @@ const Footer = () => {
                             <span className="text-base font-medium">Сервис и поддержка</span>
                             <ul>
                                 <li>
-                                    <a href="#" class="hover:text-red-600 text-sm">
+                                    <a href="#" className="hover:text-red-600 text-sm">
                                         Сервисный центр
                                         <br /> ВсеИнструменты.ру
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="hover:text-red-600 text-sm">
+                                    <a href="#" className="hover:text-red-600 text-sm">
                                         Обратная связь
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="hover:text-red-600 text-sm">
+                                    <a href="#" className="hover:text-red-600 text-sm">
                                         Помощь по работе с сайтом
                                     </a>
                                 </li>
                                 <li className="mt-6">
-                                    <a href="#" class="hover:text-red-600 text-base font-medium">
+                                    <a href="#" className="hover:text-red-600 text-base font-medium">
                                         Работа у нас
                                     </a>
                                 </li>
@@ -193,7 +193,7 @@ const Footer = () => {
                 <div>
                     <ul>
                         <li>
-                            <a href="#" class="hover:text-red-600 text-base font-medium">
+                            <a href="#" className="hover:text-red-600 text-base font-medium">
                                 Работа у нас
                             </a>
                         </li>

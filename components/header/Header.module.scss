@@ -37,6 +37,7 @@
     &_btm {
       @apply flex flex-row items-center py-[12px] px-[32px];
       &__catalog {
+        @apply relative;
         button {
           border-radius: 6px 6px 0 0;
           @apply flex items-center gap-[10px] px-[16px] py-[10px] w-[288px] bg-[#666] text-[#fff] font-[600];
@@ -46,5 +47,13 @@
         @apply flex items-center gap-[10px] text-[18px] font-[600]; 
       }
     }
+  }
+}
+
+// navbar
+.catalog_wrapper {
+  @apply absolute z-20 top-[100%] w-[100%];
+  .categories {
+    @apply  border border-[#000];
   }
 }
