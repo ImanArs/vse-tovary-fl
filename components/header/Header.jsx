@@ -28,9 +28,9 @@ const Header = () => {
           </div>
           <div className={styles.header_wrapper_top__auth}>
             <FaUser color='#d60000' />
-            <a href="">Войти<span></span></a>
+            <Link href="/signup">Войти<span></span></Link>
             <hr />
-            <a href="">Регистрация</a>
+            <Link href="/signin">Регистрация</Link>
           </div>
         </div>
 
@@ -50,6 +50,7 @@ const Header = () => {
           <p className={styles.header_wrapper_btm__tools}><FaShoppingCart color='#d60000' /><Link  href="/basket"> Корзина </Link></p>
         </div>
       </div>
+      <hr />
     </header>
   )
 }

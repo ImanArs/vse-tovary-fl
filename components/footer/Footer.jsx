@@ -4,8 +4,8 @@ import Image from 'next/image';
 
 const Footer = () => {
     return (
-        <>
-            <div className="bg-stone-300 flex justify-between px-10 py-2 h-10 gap-6">
+        <div className="bottom-0">
+            <div className="bg-stone-300 flex justify-between px-[3%] py-2 h-10 gap-6">
                 <div className='flex'>
                     <Image
                         src="/next.svg"
@@ -21,7 +21,7 @@ const Footer = () => {
                 <input type="text" placeholder="Введите email" className="w-1/4 h-8 rounded-lg " />
                 <button className="text-sm py-2 px-4 bg-red-600 rounded-lg">Подписатьса</button>
             </div>
-            <div className="flex justify-between px-5 bg-stone-100">
+            <div className="flex justify-between px-[3%] bg-stone-100">
                 <div className="">
                     <div className="flex gap-10">
                         <div>
@@ -200,7 +200,7 @@ const Footer = () => {
                     </ul>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

@@ -1,3 +1,18 @@
 .basket{
-    @apply block;
+    @apply  m-auto px-[3%] ;
+    &_text{
+        @apply w-[48%] flex flex-col ;
+        h2{
+            @apply text-3xl font-semibold mt-8;
+        }
+        span{
+            @apply text-sm mt-8;
+            a{
+                @apply hover:text-red-400  ;
+            }
+        }
+        input{
+            @apply max-w-[85%] py-2 px-2 mt-8; 
+        }
+    }
 }
