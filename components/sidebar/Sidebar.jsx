@@ -9,6 +9,7 @@ const Sidebar = () => {
 
   const dispatch = useDispatch();
   const { inputValue1, inputValue2 } = useSelector((state) => state.filter);
+  console.log(inputValue1, inputValue2);
   
   const handleInputChange1 = (e) => {
     if(+e.target.value > 0) {
