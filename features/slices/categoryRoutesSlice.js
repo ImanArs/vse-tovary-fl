@@ -5,30 +5,154 @@ const initialState = {
     {
       id: 1,
       name: 'Инструмент',
-      icons: '',
+      icon: '',
       parent_category : null,
-      subcategories : [],
+      subcategories : [
+        {
+          id: 1,
+          name: '',
+          parent: 'Инструмент',
+          icon: ''
+        },
+        {
+          id: 2,
+          name: '',
+          parent: 'Инструмент',
+          icon: ''
+        },
+        {
+          id: 3,
+          name: '',
+          parent: 'Инструмент',
+          icon: ''
+        },
+        {
+          id: 4,
+          name: '',
+          parent: 'Инструмент',
+          icon: ''
+        },
+        {
+          id: 5,
+          name: '',
+          parent: 'Инструмент',
+          icon: ''
+        },
+      ],
     },
     {
       id: 2,
       name: 'Электрика и свет',
-      icons: '',
+      icon: '',
       parent_category : null,
-      subcategories : [],
+      subcategories : [
+        {
+          id: 1,
+          name: '',
+          parent: 'Электрика и свет',
+          icon: ''
+        },
+        {
+          id: 2,
+          name: '',
+          parent: 'Электрика и свет',
+          icon: ''
+        },
+        {
+          id: 3,
+          name: '',
+          parent: 'Электрика и свет',
+          icon: ''
+        },
+        {
+          id: 4,
+          name: '',
+          parent: 'Электрика и свет',
+          icon: ''
+        },
+        {
+          id: 5,
+          name: '',
+          parent: 'Электрика и свет',
+          icon: ''
+        },
+      ],
     },
     {
       id: 3,
       name: 'Сантехника и инженерные системы',
-      icons: '',
+      icon: '',
       parent_category : null,
-      subcategories : [],
+      subcategories : [
+        {
+          id: 1,
+          name: '',
+          parent: 'Сантехника и инженерные системы',
+          icon: ''
+        },
+        {
+          id: 2,
+          name: '',
+          parent: 'Сантехника и инженерные системы',
+          icon: ''
+        },
+        {
+          id: 3,
+          name: '',
+          parent: 'Сантехника и инженерные системы',
+          icon: ''
+        },
+        {
+          id: 4,
+          name: '',
+          parent: 'Сантехника и инженерные системы',
+          icon: ''
+        },
+        {
+          id: 5,
+          name: '',
+          parent: 'Сантехника и инженерные системы',
+          icon: ''
+        },
+      ],
     },
     {
       id: 4,
       name: 'Ручной инструмент',
-      icons: '',
+      icon: '',
       parent_category : null,
-      subcategories : [],
+      subcategories : [
+        {
+          id: 1,
+          name: '',
+          parent: 'Ручной инструмент',
+          icon: ''
+        },
+        {
+          id: 2,
+          name: '',
+          parent: 'Ручной инструмент',
+          icon: ''
+        },
+        {
+          id: 3,
+          name: '',
+          parent: 'Ручной инструмент',
+          icon: ''
+        },
+        {
+          id: 4,
+          name: '',
+          parent: 'Ручной инструмент',
+          icon: ''
+        },
+        {
+          id: 5,
+          name: '',
+          parent: 'Ручной инструмент',
+          icon: ''
+        },
+      ],
     },
     // "Инструмент",
     // "Электрика и свет ",
