@@ -30,6 +30,7 @@ const Signin = () => {
             .post(url, data)
             .then((res) => {
                 console.log(res.data);
+                localStorage.setItem('access_token', res.data['access']);
                 window.location.href = '/';
             })
             .catch((err) => {

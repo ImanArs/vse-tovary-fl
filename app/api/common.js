@@ -1,6 +1,6 @@
 // import axios from "axios";
 
-// const API_URL = 'http://127.0.0.1:8000/api/v1/';
+export const API_URL = 'http://127.0.0.1:8000/api/v1/';
 
 // function Crete (url_title) {
 //     const url = API_URL+url_title;

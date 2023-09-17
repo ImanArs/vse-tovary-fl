@@ -26,6 +26,7 @@ const Signup = () => {
             .post(url, { username, password }) 
             .then((res) => {
                 console.log(res.data);
+                localStorage.setItem("access_token", res.data["access"])
                 router.push('/');
             })
             .catch((err) => {

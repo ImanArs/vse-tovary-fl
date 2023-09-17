@@ -1,20 +1,23 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useRouter } from 'next/navigation'; 
+import { useRouter } from 'next/navigation';
 import styles from './Basket.module.scss';
 
 const Basket = () => {
     const [products, setProducts] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
-    const router = useRouter(); 
+    const [showResults, setShowResults] = useState(false); 
+    const router = useRouter();
 
     useEffect(() => {
+        const url = 'http://127.0.0.1:8000/api/v1/product/';
         axios
-            .get('http://127.0.0.1:8000/api/v1/product/')
+            .get(url, {
+                headers: { Authorization: 'Bearer ' + localStorage.getItem('access_token') },
+            })
             .then((response) => {
                 setProducts(response.data);
-
                 if (response.data.length === 0) {
                     router.push('/');
                 }
@@ -24,11 +27,16 @@ const Basket = () => {
             });
     }, [router]);
 
-    // Function to filter products based on searchQuery
-    const filteredProducts = products.filter((product) =>
-        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+
+   const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase()) 
+  
+);
+
+    const handleInputChange = (e) => {
+        setSearchQuery(e.target.value);
+        setShowResults(e.target.value !== ''); 
+    };
 
     return (
         <>
@@ -43,23 +51,25 @@ const Basket = () => {
                         type="text"
                         placeholder="Быстрое добавление: введите наименование или описание товара"
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onChange={handleInputChange}
                     />
                 </div>
             </div>
 
-            <div className={styles.productList}>
-                {searchQuery && filteredProducts.length === 0 ? (
-                    <p>No matching products found.</p>
-                ) : (
-                    filteredProducts.map((product) => (
-                        <div key={product.id} className={styles.product}>
-                            <h3>{product.name}</h3>
-                            <p>{product.description}</p>
-                        </div>
-                    ))
-                )}
-            </div>
+            {showResults && ( 
+                <div className={styles.productList}>
+                    {filteredProducts.length === 0 ? (
+                        <p>Подходящие товары не найдены.</p>
+                    ) : (
+                        filteredProducts.map((product) => (
+                            <div key={product.id} className={styles.product}>
+                                <h3>{product.name}</h3>
+                                {/* <p>{product.description}</p> */}
+                            </div>
+                        ))
+                    )}
+                </div>
+            )}
         </>
     );
 };
