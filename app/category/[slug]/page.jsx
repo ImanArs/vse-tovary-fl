@@ -7,12 +7,10 @@ const page = ({params}) => {
   
   let decodeURL = params.slug ? decodeURIComponent(params.slug) : '';
   const categoryRoutes = useSelector(state => state.routes.categoryRotes)
-  console.log(categoryRoutes);
+  const url = categoryRoutes.find(item => item.name === decodeURL)
 
   useEffect(() => {
-    const url = categoryRoutes.find(item => item.name === decodeURL)
     setUrlObj(url)
-    console.log(url, "url obj");
   },[params.slug])
 
   return (
