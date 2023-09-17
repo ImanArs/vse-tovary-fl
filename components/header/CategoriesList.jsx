@@ -5,7 +5,7 @@ const CategoriesList = ({routesArr}) => {
   return (
     <div className={styles.categories}>
       {routesArr.map((item, index) => (
-        <div key={index}>{item}</div>
+        <p key={index}>{item}</p>
       ))}
     </div>
   )

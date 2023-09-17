@@ -1,10 +1,10 @@
 import React from 'react'
 
-const About = () => {
+const Category = () => {
 
   return (
     <div>map.ite</div>
   )
 }
 
-export default About
+export default Category

@@ -39,12 +39,11 @@ const Header = () => {
             <NavBar />
           </div>
           <p className={styles.header_wrapper_btm__tools}><AiOutlinePercentage color='#d60000' /> Акции</p>
-          <div className={styles.header_wrapper_btm__search}>
-            <form action="">
-              <input type="text" required/>
-              <button type='submit'><FiSearch/></button>
-            </form>
-          </div>
+          
+          <form action="" className={styles.header_wrapper_btm__search}>
+            <input type="text" required placeholder='Поиск среди 1 000 000 товаров. Введите запрос'/>
+            <button type='submit'><FiSearch/></button>
+          </form>
           <p className={styles.header_wrapper_btm__tools}><RiBarChartFill color='#d60000' /> Сравнение</p>
           <p className={styles.header_wrapper_btm__tools}><AiFillHeart color='#d60000' /> <Link  href="/">Избранное</Link></p>
           <p className={styles.header_wrapper_btm__tools}><FaShoppingCart color='#d60000' /><Link  href="/basket"> Корзина </Link></p>
