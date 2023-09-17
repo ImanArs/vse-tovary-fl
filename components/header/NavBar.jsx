@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { useSelector } from 'react-redux';
 import { showRoutes } from '@/features/slices/categoryRoutesSlice';

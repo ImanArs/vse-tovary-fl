@@ -18,7 +18,9 @@ const Header = () => {
       <div className={styles.header_wrapper}>
         <div className={styles.header_wrapper_top}>
           <div className={styles.header_wrapper_top__images}>
+            <Link href={`/`}>
             <img className={styles.logo} src="/logo.svg" alt="Logo" />
+            </Link>
             <img src="/skidki.png" alt="" />
           </div>
           <div className={styles.header_wrapper_top__phone}>

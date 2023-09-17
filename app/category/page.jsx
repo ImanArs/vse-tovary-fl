@@ -1,10 +1,9 @@
 import React from 'react'
 
-const Category = () => {
-
+const Page = () => {
   return (
-    <div>map.ite</div>
+    <main>Page</main>
   )
 }
 
-export default Category
+export default Page
