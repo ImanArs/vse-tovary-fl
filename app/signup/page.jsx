@@ -20,7 +20,7 @@ const Signup = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const { username, password } = state;
-        const url = 'http://127.0.0.1:8000/api/v1/account/token/';
+        const url = 'http://127.0.0.1:8000/api/v1/account/login/';
 
         axios
             .post(url, { username, password }) 
