@@ -35,7 +35,7 @@
     }
 
     &_btm {
-      @apply flex flex-row items-center py-[12px] px-[32px];
+      @apply flex flex-row items-center py-[12px] px-[32px] gap-[10px];
       &__catalog {
         @apply relative;
         button {
@@ -44,7 +44,18 @@
         }
       }
       &__tools {
-        @apply flex items-center gap-[10px] text-[18px] font-[600]; 
+        @apply flex items-center gap-[10px] text-[15px] font-[400]; 
+      }
+      &__search {
+        @apply flex items-center;
+        input {
+          @apply w-[580px] py-[8px] px-[16px] border border-[#666] ;
+          border-radius: 6px 0 0 6px;
+        }
+        button {
+          @apply py-[13px] px-[12px] bg-[#666] text-[#fff];
+          border-radius: 0 6px 6px 0;
+        }
       }
     }
   }
@@ -52,8 +63,11 @@
 
 // navbar
 .catalog_wrapper {
-  @apply absolute z-20 top-[100%] w-[100%];
+  @apply absolute z-20 top-[100%] w-[100%] ;
   .categories {
-    @apply  border border-[#000];
+    @apply  border border-[#000] bg-[#fff] p-[15px];
+    p {
+      @apply p-[8px];
+    }
   }
 }
