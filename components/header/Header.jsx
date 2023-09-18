@@ -24,8 +24,8 @@ const Header = () => {
             <img src="/skidki.png" alt="" />
           </div>
           <div className={styles.header_wrapper_top__phone}>
-            <p><a href="">+7 (495) 647-10-00</a></p>
-            <p><a href="">8 800 550-37-70</a></p>
+            <p><Link href="#">+7 (495) 647-10-00</Link></p>
+            <p><Link href="#">8 800 550-37-70</Link></p>
             <p>Звонок бесплатный 05:00 – 22:00</p>
           </div>
           <div className={styles.header_wrapper_top__auth}>

@@ -1,35 +1,47 @@
-import React from 'react';
-import {AiOutlineHeart} from 'react-icons/ai';
-import {HiShoppingCart} from 'react-icons/hi';
+'use client'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import Link from 'next/link';
 
 import styles from './Card.module.scss';
 
-const Card = () => { 
-    
-    return (
-        <>
-            <div className={styles.cart}>
-                <div className={styles.cart_heart}>
-                    <AiOutlineHeart className={styles.cart_heart__svg} />
-                </div>
-                <div className={styles.cart_image}>
-                    <img
-                        src="https://cdn.vseinstrumenti.ru/images/goods/stroitelnyj-instrument/perforatory/5195/204x184/51302023.jpg"
-                        alt="wewe"
-                    />
-                </div>
-                <div className={styles.cart_name}>
-                    <span>Lorem ipsum dolor sit amet.</span>
-                </div>
+const Card = () => {
+    const [products, setProducts] = useState([]);
 
-                <div className={styles.cart_price}>
-                    <p>123 p.</p>
-                    <div className={styles.cart_icons}>
-                        <HiShoppingCart className={styles.cart_icons__svg} color="#fff" />
-                    </div>
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+
+    const fetchProducts = () => {
+        const url = 'http://127.0.0.1:8000/api/v1/product/'; 
+        axios
+            .get(url, {
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("access_token")
+                }
+            })
+            .then((res) => {
+                setProducts(res.data);
+            })
+            .catch((err) => {
+                // console.log(err.response.data);
+            });
+    };
+
+    return (
+        <div className={styles.cardContainer}>
+            {products.map((product) => (
+                <div className={styles.card} key={product.id}>
+                    <h2>{product.name}</h2>
+                    <p>{product.description}</p>
+                    <p>Price: {product.price}</p>
+                    {/* <p>Category: {product.category}</p> */}
+                    {/* <Link href={`/product/${product.id}`}>
+                        <a>View Details</a>
+                    </Link> */}
                 </div>
-            </div>
-        </>
+            ))}
+        </div>
     );
 };
 

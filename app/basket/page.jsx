@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import styles from './Basket.module.scss';
+import Link from 'next/link';
 
 const Basket = () => {
     const [products, setProducts] = useState([]);
@@ -44,8 +45,8 @@ const Basket = () => {
                 <div className={styles.basket_text}>
                     <h2>Ваша корзина пока пуста</h2>
                     <span>
-                        Акции, специальные предложения и обзоры самых интересных товаров на{' '}
-                        <a href="/">главной странице</a> помогут вам определиться с выбором!
+                        Акции, специальные предложения и обзоры самых интересных товаров на
+                        <Link href="/">главной странице</Link> помогут вам определиться с выбором!
                     </span>
                     <input
                         type="text"

@@ -1,6 +1,7 @@
 // "use client"
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Footer = () => {
     return (
@@ -28,34 +29,34 @@ const Footer = () => {
                             <span className="text-base font-medium">О компании</span>
                             <ul className="block">
                                 <li>
-                                    <a href="#" className="hover:text-red-600 text-sm">
+                                    <Link href="#" className="hover:text-red-600 text-sm">
                                         Реквизиты
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="hover:text-red-600 text-sm">
+                                    <Link href="#" className="hover:text-red-600 text-sm">
                                         О нас
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="hover:text-red-600 text-sm">
+                                    <Link href="#" className="hover:text-red-600 text-sm">
                                         Информация для инвесторов
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="hover:text-red-600 text-sm">
+                                    <Link href="#" className="hover:text-red-600 text-sm">
                                         Сертификаты
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="hover:text-red-600 text-sm">
+                                    <Link href="#" className="hover:text-red-600 text-sm">
                                         Производители
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="hover:text-red-600 text-sm">
+                                    <Link href="#" className="hover:text-red-600 text-sm">
                                         Правовая информация
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
@@ -64,9 +65,9 @@ const Footer = () => {
                                 <span className="text-base font-medium">Акции</span>
                                 <ul>
                                     <li>
-                                        <a href="#" className="hover:text-red-600 text-sm">
+                                        <Link href="#" className="hover:text-red-600 text-sm">
                                             Наши акции
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
@@ -74,19 +75,19 @@ const Footer = () => {
                                 <span className="text-base font-medium ">Компаниям</span>
                                 <ul>
                                     <li>
-                                        <a href="#" className="hover:text-red-600 text-sm">
+                                        <Link href="#" className="hover:text-red-600 text-sm">
                                             Поставщикам
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="#" className="hover:text-red-600 text-sm">
+                                        <Link href="#" className="hover:text-red-600 text-sm">
                                             Организациям
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                     <a href="#" className="hover:text-red-600 text-sm">
+                                     <Link href="#" className="hover:text-red-600 text-sm">
                                             Франшиза
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
@@ -95,29 +96,29 @@ const Footer = () => {
                             <span className="text-base font-medium">Получение и оплата</span>
                             <ul>
                                 <li>
-                                    <a href="#" className="hover:text-red-600 text-sm">
+                                    <Link href="#" className="hover:text-red-600 text-sm">
                                         Доставка курьером
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="hover:text-red-600 text-sm">
+                                    <Link href="#" className="hover:text-red-600 text-sm">
                                         Доставка транспортной <br /> компанией
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="hover:text-red-600 text-sm">
+                                    <Link href="#" className="hover:text-red-600 text-sm">
                                         Информация для инвесторов
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="hover:text-red-600 text-sm">
+                                    <Link href="#" className="hover:text-red-600 text-sm">
                                         Самовывоз
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="hover:text-red-600 text-sm">
+                                    <Link href="#" className="hover:text-red-600 text-sm">
                                         Способы оплаты
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
@@ -125,25 +126,25 @@ const Footer = () => {
                             <span className="text-base font-medium">Сервис и поддержка</span>
                             <ul>
                                 <li>
-                                    <a href="#" className="hover:text-red-600 text-sm">
+                                    <Link href="#" className="hover:text-red-600 text-sm">
                                         Сервисный центр
                                         <br /> ВсеИнструменты.ру
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="hover:text-red-600 text-sm">
+                                    <Link href="#" className="hover:text-red-600 text-sm">
                                         Обратная связь
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="#" className="hover:text-red-600 text-sm">
+                                    <Link href="#" className="hover:text-red-600 text-sm">
                                         Помощь по работе с сайтом
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="mt-6">
-                                    <a href="#" className="hover:text-red-600 text-base font-medium">
+                                    <Link href="#" className="hover:text-red-600 text-base font-medium">
                                         Работа у нас
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
@@ -181,8 +182,8 @@ const Footer = () => {
                     <div className="mt-10">
                         <p className="text-xs">
                             Вы принимаете условия
-                            <a href="#">политики в отношении обработки персональных данных</a> и
-                            <a href="#">пользовательского соглашения</a> каждый раз, когда
+                            <Link href="#">политики в отношении обработки персональных данных</Link> и
+                            <Link href="#">пользовательского соглашения</Link> каждый раз, когда
                             оставляете
                             <br />
                             свои данные в любой форме обратной связи на сайте ВсеИнструменты.ру
@@ -193,9 +194,9 @@ const Footer = () => {
                 <div>
                     <ul>
                         <li>
-                            <a href="#" className="hover:text-red-600 text-base font-medium">
+                            <Link href="#" className="hover:text-red-600 text-base font-medium">
                                 Работа у нас
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>

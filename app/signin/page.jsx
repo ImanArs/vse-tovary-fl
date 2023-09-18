@@ -79,9 +79,9 @@ const Signin = () => {
                 </div>
                 <div>
                     <button type="submit">Зарегистрироваться</button>
-                    <a href="/Authentication/Login" style={{ fontSize: '15px', color: '#009B95' }}>
+                    <Link href="/Authentication/Login" style={{ fontSize: '15px', color: '#009B95' }}>
                         Уже есть аккаунт
-                    </a>
+                    </Link>
                 </div>
             </form>
         </div>

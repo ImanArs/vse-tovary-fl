@@ -1,3 +1,4 @@
+'use client'
 import { configureStore } from "@reduxjs/toolkit";
 import categoryRoutesSlice from "./slices/categoryRoutesSlice";
 import filterReducer from "./slices/filter-slice";

@@ -14,7 +14,6 @@ const Category = () => {
     const [icon, setIcon] = useState(null);
 
     useEffect(() => {
-        // Загрузите список категорий при загрузке компонента
         fetchCategories();
     }, []);
 
