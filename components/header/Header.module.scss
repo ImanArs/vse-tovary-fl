@@ -71,3 +71,10 @@
     }
   }
 }
+// SubCategories
+.SubCategories {
+  @apply relative;
+}
+.SubCategory_item {
+  @apply w-[60vw] bg-white h-[100%] absolute left-[100%] top-0 border border-[#000];
+}

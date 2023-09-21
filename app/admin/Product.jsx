@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'; 
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Product = () => {
@@ -7,7 +7,7 @@ const Product = () => {
         name: '',
         description: '',
         price: '',
-        category: 0,
+        category: '',
     });
 
     const [errors, setErrors] = useState({
@@ -17,11 +17,12 @@ const Product = () => {
         category: '',
     });
 
-    const [categories, setCategories] = useState([]); 
-
+    const [categories, setCategories] = useState([]);
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
         fetchCategories();
+
     }, []);
 
     const fetchCategories = () => {
@@ -40,6 +41,8 @@ const Product = () => {
             });
     };
 
+   
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -53,7 +56,7 @@ const Product = () => {
         if (isNaN(state.price) || Number(state.price) <= 0) {
             validationErrors.price = 'Price must be a positive number';
         }
-        if (state.category === 0) {
+        if (state.category === '0') {
             validationErrors.category = 'Category is required';
         }
 
@@ -78,6 +81,8 @@ const Product = () => {
             })
             .then((res) => {
                 console.log(res.data);
+                // After successful creation, fetch the updated list of products
+                fetchProducts();
             })
             .catch((err) => {
                 console.log(err.response.data);
@@ -85,16 +90,16 @@ const Product = () => {
     };
 
     const handleChange = (e) => {
-        const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
-        setState({
-            ...state,
-            [e.target.id]: value,
-        });
-        setErrors({
-            ...errors,
-            [e.target.id]: '', // Сбрасываем ошибку при изменении поля
-        });
-    };
+            const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+            setState({
+                ...state,
+                [e.target.id]: value,
+            });
+            setErrors({
+                ...errors,
+                [e.target.id]: '', // Reset error message when the field changes
+            });
+        };
 
     return (
         <div>
@@ -128,7 +133,7 @@ const Product = () => {
 
                 <label htmlFor="category">Category</label>
                 <select id="category" value={state.category} onChange={handleChange}>
-                    <option value={0}>Select a category</option>
+                    <option value="0">Select a category</option>
                     {categories.map((category) => (
                         <option key={category.id} value={category.id}>
                             {category.name} - {category.parent}
@@ -139,6 +144,9 @@ const Product = () => {
 
                 <button type="submit">Submit</button>
             </form>
+
+            {/* List of products */}
+            
         </div>
     );
 };
