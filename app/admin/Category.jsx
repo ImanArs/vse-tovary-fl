@@ -81,7 +81,11 @@ const Category = () => {
     const handleDelete = (id) => {
         const url = `http://127.0.0.1:8000/api/v1/category/crud/${id}/`;
         axios
-            .delete(url)
+            .delete(url,{
+                headers: {
+                    "Authorization": "Bearer "+localStorage.getItem("access_token")
+                }
+            })
             .then(() => {
                 console.log(`Category ${id} deleted.`);
                 fetchCategories();

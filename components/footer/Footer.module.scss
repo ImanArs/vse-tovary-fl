@@ -1,0 +1,50 @@
+.footer {
+  @apply max-w-[1900px] m-auto  bg-[#F5F5F5] py-[20px];
+  &_wrapper {
+    @apply w-[1392px] m-auto;
+    .form {
+      @apply flex items-center justify-between py-[12px];
+      h2 {
+        @apply flex items-center gap-[10px] font-[600];
+      }
+      form {
+        @apply flex gap-[20px];
+        input {
+          @apply w-[432px] border border-[#999] px-[16px] py-[6px] bg-white rounded-[7px];
+        }
+        button {
+          @apply bg-[#d60000] w-[206px] text-center text-[#fff] px-[18px] py-[6px] rounded-[7px];
+        }
+      }
+    }
+    .links {
+      @apply w-[80%] grid grid-cols-4 py-[20px];
+      ul {
+        @apply w-[240px];
+        h3 {
+          @apply font-[600] my-[10px] text-[16px];
+        }
+        li {
+          @apply text-[15px] mt-[5px];
+        }
+      }
+    }
+    .letsFriend {
+      h3 {
+        @apply font-[600] my-[10px] text-[16px];
+      }
+      &_items {  
+        @apply flex gap-[20px] py-[30px];
+        div {
+          @apply p-[6px] rounded-[10px];
+          svg {
+            width: 40px;
+            path {
+              fill: #fff;
+            }
+          }
+        } 
+      }
+    }
+  }
+}

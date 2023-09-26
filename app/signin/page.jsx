@@ -79,9 +79,6 @@ const Signin = () => {
                 </div>
                 <div>
                     <button type="submit">Зарегистрироваться</button>
-                    <Link href="/Authentication/Login" style={{ fontSize: '15px', color: '#009B95' }}>
-                        Уже есть аккаунт
-                    </Link>
                 </div>
             </form>
         </div>

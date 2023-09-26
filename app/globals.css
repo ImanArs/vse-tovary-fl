@@ -27,6 +27,7 @@ body {
 } */
 
 main {
+  padding: 20px 0;
   min-height: 200vh;
-  @apply max-w-[1600px] w-[1300px] m-auto;
+  @apply max-w-[1600px] w-[1330px] m-auto;
 }
