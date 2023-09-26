@@ -1,20 +1,40 @@
 'use client'
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 
 const page = ({params}) => {
-  const [urlObj, setUrlObj] = useState(null)
-  
-  let decodeURL = params.slug ? decodeURIComponent(params.slug) : '';
-  const categoryRoutes = useSelector(state => state.routes.categoryRotes)
-  const url = categoryRoutes.find(item => item.name === decodeURL)
+  const categoryRoutes = useSelector(state => state.routes.categoryRotes);
+  const [categoryName, setCategoryName] = useState('');
+  const [subCategory, setSubCategories] = useState([]);
 
   useEffect(() => {
-    setUrlObj(url)
-  },[params.slug])
+    const decodedCategorySlug = decodeURI(params.slug);
 
+    const foundCategory = categoryRoutes.find(element => element.name === decodedCategorySlug);
+    // const subcategories = foundCategory.find(element => element)
+    console.log(foundCategory.subcategories, "wqeq");
+    if (foundCategory) {
+      setCategoryName(foundCategory.name);
+      setSubCategories(foundCategory.subcategories)
+    }
+  }, [params.slug, categoryRoutes]);
+  console.log(categoryName);
   return (
-    <main>page slug {urlObj?.name}</main>
+    <main>
+      <h1>page {categoryName}</h1>
+      <div>
+        {
+          categoryName ? (
+              subCategory?.map(item => (
+                <div key={item.id}><Link href={`/category/${params.slug}/${item.name}`}>{item.name}</Link></div>
+                ))
+          ) : (
+            <p>загрузка данных</p>
+          )
+        }
+      </div>
+    </main>
   )
 }
 

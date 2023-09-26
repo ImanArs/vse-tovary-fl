@@ -5,17 +5,23 @@ import SubCategories from './SubCategories'
 
 const CategoriesList = ({routesArr}) => {
   const [hovered, setHovered] = React.useState(false)
-  const [currentItem, setCurrentItem] = React.useState(null)
+  const [currentCategory, setCurrentCategory] = React.useState(null)
+
+  console.log(hovered);
 
 
   return (
     <div className={styles.categories} onMouseLeave={() => setHovered(false)} onMouseEnter={() => setHovered(true)}>
-      {routesArr.map((item, index) => (
-        <div key={item.id} className={styles.SubCategories} onMouseEnter={() => setCurrentItem(item)}>
-          <p ><Link href={`/category/${item.name}`}>{item.name}</Link></p>
+      {routesArr.map(item => (
+        <div key={item.id} className={styles.SubCategories} onMouseEnter={() => setCurrentCategory(item)}>
+          <p>
+            <Link href={`/category/${item.name}`} onClick={() => setHovered(false)}>
+              {item.name}
+            </Link>
+          </p>
         </div>
       ))}
-      {hovered && <SubCategories item={currentItem} />}
+      {hovered && <SubCategories item={currentCategory} />}
     </div>
   )
 }

@@ -2,9 +2,9 @@ import React from 'react';
 import {AiOutlineHeart} from 'react-icons/ai';
 import {HiShoppingCart} from 'react-icons/hi';
 
-import styles from './Card.module.scss';
+import styles from './ProdCard.module.scss';
 
-const Card = ({image, name, price}) => { 
+const ProdCard = ({image, name, price}) => { 
     
     return (
         <>
@@ -33,4 +33,4 @@ const Card = ({image, name, price}) => {
     );
 };
 
-export default Card;
+export default ProdCard;
