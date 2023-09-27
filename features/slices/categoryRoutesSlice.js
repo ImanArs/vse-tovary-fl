@@ -18,25 +18,25 @@ const initialState = {
               id: 1,
               image: "https://cdn.vseinstrumenti.ru/images/goods/stroitelnyj-instrument/perforatory/5195/204x184/51302023.jpg",
               name: "Lorem ipsum dolor sit amet.",
-              price: 123
+              price: 1230
             },
             {
               id: 2,
               image: "https://cdn.vseinstrumenti.ru/images/goods/stroitelnyj-instrument/perforatory/5195/204x184/51302023.jpg",
               name: "Lorem ipsum dolor sit amet.",
-              price: 123
+              price: 323
             },
             {
               id: 3,
               image: "https://cdn.vseinstrumenti.ru/images/goods/stroitelnyj-instrument/perforatory/5195/204x184/51302023.jpg",
               name: "Lorem ipsum dolor sit amet.",
-              price: 123
+              price: 423
             },
             {
               id: 4,
               image: "https://cdn.vseinstrumenti.ru/images/goods/stroitelnyj-instrument/perforatory/5195/204x184/51302023.jpg",
               name: "Lorem ipsum dolor sit amet.",
-              price: 123
+              price: 12
             },
           ]
         },
