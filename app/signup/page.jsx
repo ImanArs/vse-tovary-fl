@@ -23,10 +23,10 @@ const Signup = () => {
         const url = 'http://127.0.0.1:8000/api/v1/account/login/';
 
         axios
-            .post(url, { username, password }) 
+            .post(url, { username, password })
             .then((res) => {
                 console.log(res.data);
-                localStorage.setItem("access_token", res.data["access"])
+                localStorage.setItem('access_token', res.data['access']);
                 router.push('/');
             })
             .catch((err) => {
@@ -42,7 +42,7 @@ const Signup = () => {
                 <div className="space-y-8 mx-auto max-w-lg py-6 px-3">
                     <div className="rounded-lg bg-white boxShadow-lg p-8">
                         <div className="text-center">
-                            <h1 className="text-4xl text-black">Signup</h1>
+                            <h1 className="text-4xl text-black">Войти</h1>
                             <p className="text-lg text-gray-600 text-center">
                                 Create an account by providing your email
                             </p>
@@ -71,9 +71,7 @@ const Signup = () => {
                             </div>
                             <div className="flex justify-between mt-8">
                                 <button type="submit">Signup</button>
-                                <a
-                                    href="/login" 
-                                    className="text-15px text-#009B95">
+                                <a href="/login" className="text-15px text-#009B95">
                                     Login
                                 </a>
                             </div>

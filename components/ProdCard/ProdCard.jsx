@@ -1,10 +1,11 @@
 import React from 'react';
-import { AiOutlineHeart } from 'react-icons/ai';
-import { HiShoppingCart } from 'react-icons/hi';
+import {AiOutlineHeart} from 'react-icons/ai';
+import {HiShoppingCart} from 'react-icons/hi';
 
-import styles from './Card.module.scss';
+import styles from './ProdCard.module.scss';
 
-const Card = ({ image, name, price }) => {
+const ProdCard = ({image, name, price}) => { 
+    
     return (
         <>
             <div className={styles.cart}>
@@ -12,7 +13,10 @@ const Card = ({ image, name, price }) => {
                     <AiOutlineHeart className={styles.cart_heart__svg} />
                 </div>
                 <div className={styles.cart_image}>
-                    <img src={image} alt={name} />
+                    <img
+                        src={image}
+                        alt={name}
+                    />
                 </div>
                 <div className={styles.cart_name}>
                     <span>{name}</span>
@@ -29,4 +33,4 @@ const Card = ({ image, name, price }) => {
     );
 };
 
-export default Card;
+export default ProdCard;

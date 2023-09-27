@@ -28,6 +28,6 @@ body {
 
 main {
   padding: 20px 0;
-  min-height: 200vh;
+  min-height: 100vh;
   @apply max-w-[1600px] w-[1330px] m-auto;
 }
