@@ -23,7 +23,7 @@ const ProdWrapper = ({arr}) => {
       <div>
         
         <div className={styles.ProdWrapper}>
-          <Sidebar />
+          <Sidebar arr={arr}/>
           <div className={styles.cards_wrapper}>
             {arr.length > 0 ? (
               arr.map(item => (

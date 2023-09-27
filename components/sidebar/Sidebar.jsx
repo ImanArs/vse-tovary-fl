@@ -5,7 +5,7 @@ import { setInputValue1, setInputValue2 } from "@/features/slices/filter-slice";
 
 import styles from './Sidebar.module.scss'
 
-const Sidebar = () => {
+const Sidebar = ({arr = 0}) => {
   const dispatch = useDispatch();
   const { inputValue1, inputValue2 } = useSelector((state) => state.filter);
   
@@ -38,7 +38,7 @@ const Sidebar = () => {
   
   return (
     <div className={styles.sidebar}>
-      <h3>Найдено товаров: 11</h3>
+      <h3>Найдено товаров: {arr?.length}</h3>
       <hr />
       <form className={styles.sidebar_filter} onSubmit={handleFilterSubmit}>
         <p>Цена в р.</p>
@@ -47,13 +47,15 @@ const Sidebar = () => {
             type="number"
             value={inputValue1}
             onChange={handleInputChange1}
+            placeholder='От'
             required
-          />
+            />
           <input 
             type="number"
             value={inputValue2}
             onChange={handleInputChange2}
             required
+            placeholder='До'
           />
         </div>
         <div className={styles.sidebar_filter__btn}>
