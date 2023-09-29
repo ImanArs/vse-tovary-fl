@@ -34,7 +34,7 @@
         }
 
         &_btm {
-            @apply flex flex-row items-center py-[12px] px-[32px] gap-[10px];
+            @apply flex flex-row items-center py-[12px] px-[32px] gap-[15px];
             &__catalog {
                 @apply relative;
                 button {
@@ -43,7 +43,7 @@
                 }
             }
             &__tools {
-                @apply flex items-center gap-[10px] text-[15px] font-[400];
+                @apply flex items-center gap-[10px] text-[18px] font-[400];
             }
             &__search {
                 @apply flex items-center;

@@ -116,9 +116,6 @@ const Header = () => {
                         </button>
                     </form>
                     <p className={styles.header_wrapper_btm__tools}>
-                        <RiBarChartFill color="#d60000" /> Сравнение
-                    </p>
-                    <p className={styles.header_wrapper_btm__tools}>
                         <AiFillHeart color="#d60000" /> Избранное
                     </p>
                     <p className={styles.header_wrapper_btm__tools}>

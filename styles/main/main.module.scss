@@ -1,0 +1,18 @@
+.main_wrapper {
+  @apply flex gap-4;
+  &__left {
+    @apply w-[300px] h-auto border;
+  }
+  &__right {
+    @apply flex flex-col gap-[20px];
+    .popular {
+      @apply flex gap-5;
+      div {
+        @apply w-[100%] border h-[200px] rounded-[15px];
+        img {
+          @apply w-full h-full;
+        }
+      }
+    }
+  }
+}
