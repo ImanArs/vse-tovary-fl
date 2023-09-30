@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import styles from './Signup.module.scss';
+import { FaArrowRight } from 'react-icons/fa';
 
 const Signup = () => {
     const [state, setState] = useState({
@@ -37,42 +39,47 @@ const Signup = () => {
     };
 
     return (
-        <div className="rounded-lg boxShadow-lg p-8">
-            <div className="min-h-70vh flex items-center justify-center bg-white">
-                <div className="space-y-8 mx-auto max-w-lg py-6 px-3">
-                    <div className="rounded-lg bg-white boxShadow-lg p-8">
-                        <div className="text-center">
-                            <h1 className="text-4xl text-black">Войти</h1>
-                            <p className="text-lg text-gray-600 text-center">
-                                Create an account by providing your email
-                            </p>
+        <div className={styles.signup}>
+            <div className={styles.signup__wrapper}>
+                <div className={styles.signup__wrapper__content}>
+                    <div className={styles.signup__wrapper__content__one}>
+                        <div className={styles.signup__wrapper__content__one__text}>
+                            <h1>Войти</h1>
                         </div>
 
-                        <form onSubmit={handleSubmit}>
-                            <div className="mt-8">
-                                <input
-                                    type="text"
-                                    placeholder="Email"
-                                    id="username"
-                                    value={state.username}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                            <div className="mt-8">
-                                <input
-                                    type="password"
-                                    placeholder="Password"
-                                    id="password"
-                                    value={state.password}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                            <div className="flex justify-between mt-8">
-                                <button type="submit">Signup</button>
-                                <a href="/login" className="text-15px text-#009B95">
-                                    Login
+                        <form
+                            onSubmit={handleSubmit}
+                            className={styles.signup__wrapper__content__one__input}>
+                            <input
+                                type="text"
+                                placeholder="Email"
+                                id="username"
+                                value={state.username}
+                                onChange={handleChange}
+                                required
+                            />
+
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                id="password"
+                                value={state.password}
+                                onChange={handleChange}
+                                required
+                            />
+                            <div className={styles.signup__wrapper__content__one__button}>
+                                <button type="submit">
+                                    Продолжить
+                                    <FaArrowRight
+                                        className={
+                                            styles.signup__wrapper__content__one__button__arrow
+                                        }
+                                    />
+                                </button>
+                                <a
+                                    href="/signin"
+                                    className={styles.signup__wrapper__content__one__button__text}>
+                                    Регистрация
                                 </a>
                             </div>
                         </form>

@@ -60,7 +60,7 @@ const Header = () => {
                 <div className={styles.header_wrapper_top}>
                     <div className={styles.header_wrapper_top__images}>
                         <Link href={`/`}>
-                            <img className={styles.logo} src="/logo.svg" alt="Logo" />
+                            <img className={styles.logo} src="/logo-red.png" alt="Logo" />
                         </Link>
                         <img src="/skidki.png" alt="" />
                     </div>
@@ -101,7 +101,8 @@ const Header = () => {
                         <NavBar />
                     </div>
                     <p className={styles.header_wrapper_btm__tools}>
-                        <AiOutlinePercentage color="#d60000" /> Акции
+                        <AiOutlinePercentage color="#d60000" />
+                        Акции
                     </p>
                     <form action="" className={styles.header_wrapper_btm__search}>
                         <input
@@ -116,9 +117,6 @@ const Header = () => {
                         </button>
                     </form>
                     <p className={styles.header_wrapper_btm__tools}>
-                        <RiBarChartFill color="#d60000" /> Сравнение
-                    </p>
-                    <p className={styles.header_wrapper_btm__tools}>
                         <AiFillHeart color="#d60000" /> Избранное
                     </p>
                     <p className={styles.header_wrapper_btm__tools}>
@@ -126,20 +124,27 @@ const Header = () => {
                         <Link href="/cart"> Корзина </Link>
                     </p>
                 </div>
-                {showResults && (
-                    <div className={styles.productList}>
-                        {filteredProducts.length === 0 ? (
-                            <p>Подходящие товары не найдены.</p>
-                        ) : (
-                            filteredProducts.map((product) => (
-                                <div key={product.id} className={styles.product}>
-                                    <h3>{product.name}</h3>
-                                    {/* <p>{product.description}</p> */}
-                                </div>
-                            ))
-                        )}
-                    </div>
-                )}
+                <div className={styles.product_input}>
+                    {showResults && (
+                        <div className={styles.productList}>
+                            {filteredProducts.length === 0 ? (
+                                <p>Подходящие товары не найдены.</p>
+                            ) : (
+                                filteredProducts.map((product) => (
+                                    <div key={product.id} className={styles.product}>
+                                        <div>
+                                            <img src={product.image} alt={product.name} />
+                                        </div>
+                                        <div>
+                                            <h3>{product.name}</h3>
+                                            <p>{product.price} p.</p>
+                                        </div>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                    )}
+                </div>
             </div>
             <hr />
         </header>

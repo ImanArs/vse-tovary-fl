@@ -2,8 +2,7 @@
 
 import React, { useEffect } from 'react'
 import Sidebar from '@/components/sidebar/Sidebar';
-import styles from './ProdWrapper.module.scss'
-import Card from '../Product/Card';
+import styles from './ProdWrapper.module.scss';
 import { useSelector } from 'react-redux';
 import ProdCard from '../ProdCard/ProdCard';
 

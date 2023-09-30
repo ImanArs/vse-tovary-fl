@@ -34,7 +34,7 @@
         }
 
         &_btm {
-            @apply flex flex-row items-center py-[12px] px-[32px] gap-[10px];
+            @apply flex flex-row items-center py-[12px] px-[32px] gap-[15px] relative;
             &__catalog {
                 @apply relative;
                 button {
@@ -43,7 +43,7 @@
                 }
             }
             &__tools {
-                @apply flex items-center gap-[10px] text-[15px] font-[400];
+                @apply flex items-center gap-[10px] text-[18px] font-[400];
             }
             &__search {
                 @apply flex items-center;
@@ -76,4 +76,27 @@
 }
 .SubCategory_item {
     @apply w-[60vw] bg-white h-[100%] absolute left-[100%] top-0 border border-[#000];
+}
+
+// Search
+.product_input {
+    @apply flex justify-center items-center;
+}
+.productList {
+    @apply w-[580px] py-[8px] px-[8px] border mt-[13%] ml-[50px] border-[#666] bg-white absolute z-10;
+    border-radius: 6px;
+    border-color: #fff;
+}
+.product {
+    @apply flex gap-6 py-1 px-4 hover:bg-slate-100;
+    border-radius: 6px;
+    img {
+        @apply w-[70px] h-[90px];
+    }
+    h3 {
+        @apply text-sm mt-[6px];
+    }
+    p {
+        @apply text-base font-bold;
+    }
 }

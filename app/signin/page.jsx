@@ -1,7 +1,10 @@
-'use client';
-import React, { useState } from 'react';
+'use client'
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styles from './Signin.module.scss';
+import { FaArrowRight } from 'react-icons/fa';
+
+const TokenContext = React.createContext();
 
 const Signin = () => {
     const [state, setState] = useState({
@@ -9,6 +12,8 @@ const Signin = () => {
         password: '',
         password2: '',
     });
+
+    const [accessToken, setAccessToken] = useState(null);
 
     const handleChange = (e) => {
         const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
@@ -31,7 +36,7 @@ const Signin = () => {
             .then((res) => {
                 console.log(res.data);
                 localStorage.setItem('access_token', res.data['access']);
-                window.location.href = '/';
+                setAccessToken(res.data['access']); // Устанавливаем токен в состояние компонента
             })
             .catch((err) => {
                 console.log(err.response.data);
@@ -41,48 +46,73 @@ const Signin = () => {
     };
 
     return (
-        <div className="px-[3%]">
-            <div>
-                <h1>Регистрация</h1>
-                <p>Зарегистрируйтесь, заполнив следующие поля:</p>
+        <div className={styles.signup}>
+            <div className={styles.signup__wrapper}>
+                <div className={styles.signup__wrapper__content}>
+                    <div className={styles.signup__wrapper__content__one}>
+                        <div className={styles.signup__wrapper__content__one__text}>
+                            <h1>Регистрация</h1>
+                            <p>Зарегистрируйтесь, заполнив следующие поля:</p>
+                        </div>
+                        <form
+                            onSubmit={handleSubmit}
+                            className={styles.signup__wrapper__content__one__input}>
+                            <input
+                                type="text"
+                                placeholder="Имя пользователя"
+                                id="username"
+                                value={state.username}
+                                onChange={handleChange}
+                                required
+                            />
+
+                            <input
+                                type="password"
+                                placeholder="Пароль"
+                                id="password"
+                                value={state.password}
+                                onChange={handleChange}
+                                required
+                            />
+
+                            <input
+                                type="password"
+                                placeholder="Подтвердите пароль"
+                                id="password2"
+                                value={state.password2}
+                                onChange={handleChange}
+                                required
+                            />
+                            <div className={styles.signup__wrapper__content__one__button}>
+                                <button type="submit">
+                                    Зарегистрироваться{' '}
+                                    <FaArrowRight
+                                        className={
+                                            styles.signup__wrapper__content__one__button__arrow
+                                        }
+                                    />
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <input
-                        type="text"
-                        placeholder="Имя пользователя"
-                        id="username"
-                        value={state.username}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <input
-                        type="password"
-                        placeholder="Пароль"
-                        id="password"
-                        value={state.password}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <input
-                        type="password"
-                        placeholder="Подтвердите пароль"
-                        id="password2"
-                        value={state.password2}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div>
-                    <button type="submit">Зарегистрироваться</button>
-                </div>
-            </form>
         </div>
     );
 };
 
 export default Signin;
+
+export function TokenProvider({ children }) {
+    const [token, setToken] = useState(localStorage.getItem('access_token') || null);
+
+    return <TokenContext.Provider value={{ token, setToken }}>{children}</TokenContext.Provider>;
+}
+
+export function useAccessToken() {
+    const context = useContext(TokenContext);
+    if (!context) {
+        throw new Error('useAccessToken must be used within a TokenProvider');
+    }
+    return context.token;
+}
