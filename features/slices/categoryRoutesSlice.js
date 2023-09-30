@@ -9,7 +9,7 @@ const categoryRoutesSlice = createSlice({
     initialState,
     reducers: {
         setCategoryRoutes: (state, action) => {
-            state.categoryRotes = action.payload; 
+            state.categoryRotes = action.payload;
         },
     },
 });
