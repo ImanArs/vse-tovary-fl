@@ -8,6 +8,17 @@ import { API_URL } from '@/utils/api';
 import Link from 'next/link';
 
 function ProductCard({ name, price, image, productId, accessToken }) {
+    const notify = () =>
+        toast.success('Добавлен в корзинку )', {
+            position: 'top-right',
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'light',
+        });
     const [isFavorite, setIsFavorite] = useState(false);
     const [cartProductId, setCartProductId] = useState(null);
 
@@ -42,12 +53,7 @@ function ProductCard({ name, price, image, productId, accessToken }) {
                     console.error('Произошла ошибка при запросе:', error);
                 });
         }
-<<<<<<<<< Temporary merge branch 1
-       
-    }, [cartProductId, accessToken]); 
-=========
     }, [cartProductId, accessToken]);
->>>>>>>>> Temporary merge branch 2
 
     const result = checkImage(image);
     console.log(result, 'res');
