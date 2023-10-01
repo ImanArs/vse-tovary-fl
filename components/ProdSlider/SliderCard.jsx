@@ -28,10 +28,9 @@ function ProductCard({ name, price, image, productId, accessToken }) {
                     } else {
                     }
                 })
-                .catch((error) => {
-                });
+                .catch((error) => {});
         }
-    }, [cartProductId, accessToken]); 
+    }, [cartProductId, accessToken]);
 
     return (
         <div className={styles.cart}>

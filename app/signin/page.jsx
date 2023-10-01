@@ -1,4 +1,3 @@
-'use client'
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styles from './Signin.module.scss';
@@ -35,14 +34,13 @@ const Signin = () => {
             .post(url, data)
             .then((res) => {
                 console.log(res.data);
-                localStorage.setItem('access_token', res.data['access']);
-                setAccessToken(res.data['access']); // Устанавливаем токен в состояние компонента
+                const accessToken = res.data['access'];
+                localStorage.setItem('access_token', accessToken);
+                setAccessToken(accessToken);
             })
             .catch((err) => {
                 console.log(err.response.data);
             });
-
-        console.log(data);
     };
 
     return (
@@ -83,16 +81,6 @@ const Signin = () => {
                                 onChange={handleChange}
                                 required
                             />
-                            <div className={styles.signup__wrapper__content__one__button}>
-                                <button type="submit">
-                                    Зарегистрироваться{' '}
-                                    <FaArrowRight
-                                        className={
-                                            styles.signup__wrapper__content__one__button__arrow
-                                        }
-                                    />
-                                </button>
-                            </div>
                         </form>
                     </div>
                 </div>
