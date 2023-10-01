@@ -7,6 +7,14 @@ import { API_URL } from '@/utils/api';
 
 const ProdCard = ({image, name, price}) => { 
     
+    const checkImage = (img) => {
+        if (img.slice(0,4) == 'http') {
+            return img
+        }else {
+            return API_URL+img
+        }
+    }
+    const result = checkImage(image)
     return (
         <>
             <div className={styles.cart}>
@@ -15,7 +23,7 @@ const ProdCard = ({image, name, price}) => {
                 </div>
                 <div className={styles.cart_image}>
                     <img
-                        src={API_URL+image}
+                        src={result}
                         alt={name}
                     />
                 </div>

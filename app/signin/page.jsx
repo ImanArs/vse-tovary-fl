@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styles from './Signin.module.scss';
@@ -30,19 +31,21 @@ const Signin = () => {
             password: state.password,
             password2: state.password2,
         };
-        const url = 'http://127.0.0.1:8000/api/v1/account/register/';
+        const url = 'http://51.20.95.11:8000/api/v1/account/register/';
         axios
             .post(url, data)
             .then((res) => {
-                console.log(res.data);
-                localStorage.setItem('access_token', res.data['access']);
-                setAccessToken(res.data['access']); // Устанавливаем токен в состояние компонента
+                const accessToken = res.data['access'];
+                const refreshToken = res.data['refresh'];
+                localStorage.setItem('access_token', accessToken);
+                localStorage.setItem('refresh_token', refreshToken);
+                console.log(accessToken);
+                console.log(refreshToken);
+                setAccessToken(accessToken);
             })
             .catch((err) => {
                 console.log(err.response.data);
             });
-
-        console.log(data);
     };
 
     return (
@@ -83,16 +86,14 @@ const Signin = () => {
                                 onChange={handleChange}
                                 required
                             />
-                            <div className={styles.signup__wrapper__content__one__button}>
-                                <button type="submit">
-                                    Зарегистрироваться{' '}
-                                    <FaArrowRight
-                                        className={
-                                            styles.signup__wrapper__content__one__button__arrow
-                                        }
-                                    />
-                                </button>
-                            </div>
+                            <button type="submit">
+                                Продолжить
+                                <FaArrowRight
+                                    className={
+                                        styles.signup__wrapper__content__one__button__arrow
+                                    }
+                                />
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -104,8 +105,8 @@ const Signin = () => {
 export default Signin;
 
 export function TokenProvider({ children }) {
-    const [token, setToken] = useState(localStorage.getItem('access_token') || null);
-
+    const [token, setToken] = useState(localStorage.getItem('access_token'));
+    setToken(accToken)
     return <TokenContext.Provider value={{ token, setToken }}>{children}</TokenContext.Provider>;
 }
 

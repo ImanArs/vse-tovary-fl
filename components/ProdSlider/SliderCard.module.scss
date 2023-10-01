@@ -1,7 +1,7 @@
-.cart{
-  @apply w-[230px] rounded-lg   ; 
+.card{
+  @apply w-[230px] rounded-lg border py-[15px] px-[10px]  ; 
   &_heart{
-      @apply flex mt-4 mr-4 ; 
+      @apply flex mt-4 mr-4 text-[30px] text-[#666]; 
       &__svg{
           @apply ml-auto w-10 decoration-white ;
       }
@@ -23,5 +23,8 @@
       &__svg{
           @apply  w-6;
       }
+  }
+  button {
+    @apply w-[80%] bg-[#d60000] text-[#fff] rounded-md py-[5px];
   }
 }

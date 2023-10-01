@@ -20,7 +20,6 @@ const Products = () => {
                     console.log(error.response.data);
                 });
         };
-        console.log(fetchProducts)
 
         fetchProducts();
     }, []);

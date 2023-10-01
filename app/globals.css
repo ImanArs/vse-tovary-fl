@@ -36,7 +36,7 @@ main {
 
 /* SWIPER */
 .mySwiper {
-  @apply max-w-[992px] h-[416px] w-full rounded-[15px];
+  @apply max-w-[992px] h-[416px] mt-[5px] w-full rounded-[15px];
 }
 .my-slider {
   @apply max-w-[1330px] h-[416px] w-full rounded-[15px];

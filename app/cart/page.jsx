@@ -11,7 +11,6 @@ const page = () => {
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-        console.log(inputSearch);
         setInputSearch('');
     };
     return (

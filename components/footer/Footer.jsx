@@ -1,9 +1,32 @@
-import React from 'react'
+'use client'
+import React, { useEffect } from 'react'
+import axios from 'axios';
 
-import styles from './Footer.module.scss'
-import { GrMail } from 'react-icons/gr'
+import styles from './Footer.module.scss';
+import { GrMail } from 'react-icons/gr';
 
 const Footer = () => {
+  useEffect(() => {
+    axios
+      .get('http://51.20.95.11:8000/api/v1/cart/view_cart/', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((response) => {
+        if (response.status !== 200) {
+          throw new Error('Network response was not ok');
+        }
+
+        const data = response.data;
+        console.log(data, 'cart');
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
   return (
     <footer className={styles.footer}>
       <div className={styles.footer_wrapper}>

@@ -4,7 +4,6 @@ import styles from './Header.module.scss';
 import Link from 'next/link';
 
 const SubCategories = ({ item }) => {
-    console.log(item, 'item');
     useEffect(() => {}, [item]);
     return (
         <div className={styles.SubCategory_item}>

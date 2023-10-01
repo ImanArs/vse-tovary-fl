@@ -4,8 +4,9 @@ import { HiShoppingCart } from 'react-icons/hi';
 
 import styles from './SliderCard.module.scss';
 import { API_URL } from '@/utils/api';
+import Link from 'next/link';
 
-function ProductCard({ name, price, image, productId, accessToken }) {
+function ProductCard({ name, price, image, productId, accessToken, href }) {
     const [isFavorite, setIsFavorite] = useState(false);
     const [cartProductId, setCartProductId] = useState(null);
 
@@ -37,39 +38,42 @@ function ProductCard({ name, price, image, productId, accessToken }) {
                     }
                 })
                 .catch((error) => {
+                    console.error('Произошла ошибка при запросе:', error);
                 });
         }
-       
     }, [cartProductId, accessToken]); 
 
     const result = checkImage(image)
 
     return (
-        <div className={styles.cart}>
-            <div className={styles.cart_heart} onClick={toggleFavorite}>
+        <div className={styles.card}>
+            <div className={styles.card_heart} onClick={toggleFavorite}>
                 {isFavorite ? (
-                    <AiFillHeart className={styles.cart_heart__svg} color="#d60000" />
+                    <AiFillHeart className={styles.card_heart__svg} color="#d60000" />
                 ) : (
-                    <AiOutlineHeart className={styles.cart_heart__svg} />
+                    <AiOutlineHeart className={styles.card_heart__svg} />
                 )}
             </div>
-            <div className={styles.cart_image}>
+            <div className={styles.card_image}>
                 <img src={result} alt={name} />
             </div>
-            <div className={styles.cart_name}>
+            <div className={styles.card_name}>
                 <span>{name}</span>
             </div>
 
-            <div className={styles.cart_price}>
+            <div className={styles.card_price}>
                 <p>{price} p.</p>
-                <div className={styles.cart_icons}>
+                <div className={styles.card_icons}>
                     <HiShoppingCart
-                        className={styles.cart_icons__svg}
+                        className={styles.card_icons__svg}
                         color="#fff"
                         onClick={() => setCartProductId(productId)}
                     />
                 </div>
             </div>
+            <Link href={href}>
+                <button>Подробнее</button>
+            </Link>
         </div>
     );
 }

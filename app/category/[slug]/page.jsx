@@ -14,7 +14,6 @@ const page = ({ params }) => {
         const foundCategory = categoryRoutes?.find(
             (element) => element.name === decodedCategorySlug,
         );
-        console.log(foundCategory?.subcategories, 'wqeq');
         if (foundCategory) {
             setCategoryName(foundCategory.name);
             setSubCategories(foundCategory.subcategories);

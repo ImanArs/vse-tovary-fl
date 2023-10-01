@@ -29,10 +29,9 @@ const Page = ({ params }) => {
 
             if (foundSubcategory) {
                 setSubcategoryName(foundSubcategory.name);
-                setProducts(foundSubcategory.products);
+                setProducts(foundSubcategory);
             }
         }
-        console.log(products);
     }, [params.slug, params.podcategor, categoryRoutes]);
 
     return (

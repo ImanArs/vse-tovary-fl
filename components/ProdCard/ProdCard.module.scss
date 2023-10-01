@@ -1,7 +1,7 @@
 .cart{
   @apply w-[300px] hover:border-slate-400 border m-8 rounded-lg   ; 
   &_heart{
-      @apply flex mt-4 mr-4 ; 
+      @apply flex mt-4 mr-4 text-[30px] text-[#666]; 
       &__svg{
           @apply ml-auto w-10 decoration-white ;
       }

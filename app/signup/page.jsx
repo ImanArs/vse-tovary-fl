@@ -22,20 +22,18 @@ const Signup = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const { username, password } = state;
-        const url = 'http://127.0.0.1:8000/api/v1/account/login/';
+        const url = 'http://51.20.95.11:8000/api/v1/account/login/';
 
         axios
             .post(url, { username, password })
             .then((res) => {
-                console.log(res.data);
-                localStorage.setItem('access_token', res.data['access']);
+                const accessToken = res.data['access'];
+                localStorage.setItem('access_token', accessToken);
                 router.push('/');
             })
             .catch((err) => {
                 console.log(err.response.data);
             });
-
-        console.log(state);
     };
 
     return (

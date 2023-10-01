@@ -22,6 +22,7 @@ import 'swiper/css/navigation';
 import { Autoplay, Navigation } from 'swiper/modules';
 import ProdSlider from '@/components/ProdSlider/ProdSlider';
 import { useSelector } from 'react-redux';
+import MainCategories from '@/components/mainCategories/MainCategories';
 
 export default function Home() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,7 +31,6 @@ export default function Home() {
     const [subcategories, setSubcategories] = useState([])
     
     const routesArr = useSelector((state) => state.routes.categoryRotes);
-
 
     useEffect(() => {
         console.log(routesArr, 'arrroutes');
@@ -77,14 +77,7 @@ export default function Home() {
             <CategoryRoutes />
             <div className={styles.main_wrapper}>
                 <div className={styles.main_wrapper__left}>
-                    {
-                        routesArr.map(((item,index) => 
-                            <p key={item.id} className='flex gap-3 items-center'>
-                                <img width={20} src={item.icon} alt="" />
-                                {item.name}
-                            </p>
-                        ))
-                    }
+                    <MainCategories routesArr={routesArr} />
                 </div>
                 <div className={styles.main_wrapper__right}>
                     <div
@@ -169,19 +162,15 @@ export default function Home() {
             </div>
             <div>
                 <h2>Ваша подборка популярных товаров</h2>
-                <ProdSlider arr={subcategories[0]?.products} />
+                <ProdSlider route={subcategories[0]} />
             </div>
             <div>
                 <h2>Ваша подборка товаров со скидкой</h2>
-                <ProdSlider arr={subcategories[1]?.products} />
+                <ProdSlider route={subcategories[1]} />
             </div>
             <div>
-                <h2>Ваша подборка товаров для дома</h2>
-                <ProdSlider arr={prods} />
-            </div>
-            <div>
-                <h2>Ваша подборка популярных товаров</h2>
-                <ProdSlider arr={prods} />
+                <h2>Ваша подборка из нашего магазина</h2>
+                {/* <ProdSlider route={prods} /> */}
             </div>
         </main>
     );

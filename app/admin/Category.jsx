@@ -69,7 +69,6 @@ const Category = () => {
                 }
             })
             .then((res) => {
-                console.log(res.data);
                 fetchCategories();
                 setIcon(null);
             })

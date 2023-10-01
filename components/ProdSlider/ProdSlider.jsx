@@ -8,10 +8,9 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Navigation, Autoplay } from 'swiper/modules';
-import ProdCard from '../ProdCard/ProdCard';
 import SliderCard from './SliderCard';
 
-const ProdSlider = ({ arr = [] }) => {
+const ProdSlider = ({ route }) => {
     return (
         <div>
             <Swiper
@@ -25,16 +24,17 @@ const ProdSlider = ({ arr = [] }) => {
                 navigation={true}
                 modules={[Autoplay, Navigation]}
                 className="my-slider">
-                {arr.length > 0 ? (
-                    arr?.map((item, index) => (
+                {route?.products?.length > 0 ? (
+                    route?.products?.map((item, index) => (
                         <SwiperSlide key={item.id}>
                             <SliderCard
+                                href={`/category/${route.parent_category.name}/${route.name}/${item.id}`}
                                 key={item.id}
                                 image={item.image1}
                                 name={item.name}
                                 price={item.price}
                                 productId={item.id}
-                            />
+                                />
                         </SwiperSlide>
                     ))
                 ) : (
