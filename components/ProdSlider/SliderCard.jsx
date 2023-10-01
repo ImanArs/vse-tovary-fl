@@ -3,10 +3,11 @@ import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { HiShoppingCart } from 'react-icons/hi';
 
 import styles from './SliderCard.module.scss';
+import { toast } from 'react-toastify';
 import { API_URL } from '@/utils/api';
 import Link from 'next/link';
 
-function ProductCard({ name, price, image, productId, accessToken, href }) {
+function ProductCard({ name, price, image, productId, accessToken }) {
     const [isFavorite, setIsFavorite] = useState(false);
     const [cartProductId, setCartProductId] = useState(null);
 
@@ -15,12 +16,12 @@ function ProductCard({ name, price, image, productId, accessToken, href }) {
     };
 
     const checkImage = (img) => {
-        if (img.slice(0,4) == 'http') {
-            return img
-        }else {
-            return API_URL+img
+        if (img.slice(0, 4) == 'http') {
+            return img;
+        } else {
+            return API_URL + img;
         }
-    }
+    };
     useEffect(() => {
         if (cartProductId !== null) {
             const headers = {
@@ -41,9 +42,15 @@ function ProductCard({ name, price, image, productId, accessToken, href }) {
                     console.error('Произошла ошибка при запросе:', error);
                 });
         }
+<<<<<<<<< Temporary merge branch 1
+       
     }, [cartProductId, accessToken]); 
+=========
+    }, [cartProductId, accessToken]);
+>>>>>>>>> Temporary merge branch 2
 
-    const result = checkImage(image)
+    const result = checkImage(image);
+    console.log(result, 'res');
 
     return (
         <div className={styles.card}>
@@ -67,7 +74,11 @@ function ProductCard({ name, price, image, productId, accessToken, href }) {
                     <HiShoppingCart
                         className={styles.card_icons__svg}
                         color="#fff"
-                        onClick={() => setCartProductId(productId)}
+                        // onClick={() => setCartProductId(productId)}
+                        onClick={() => {
+                            setCartProductId(productId);
+                            notify();
+                        }}
                     />
                 </div>
             </div>

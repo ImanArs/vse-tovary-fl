@@ -24,8 +24,8 @@ const ProdSlider = ({ route }) => {
                 navigation={true}
                 modules={[Autoplay, Navigation]}
                 className="my-slider">
-                {route?.products?.length > 0 ? (
-                    route?.products?.map((item, index) => (
+                {arr.length > 0 ? (
+                    arr?.map((item, index) => (
                         <SwiperSlide key={item.id}>
                             <SliderCard
                                 href={`/category/${route.parent_category.name}/${route.name}/${item.id}`}
