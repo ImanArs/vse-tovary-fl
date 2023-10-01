@@ -20,10 +20,10 @@
                     }
                 }
                 &__input {
-                    @apply flex flex-col px-[50px];
+                    @apply flex flex-col px-[50px] gap-[15px];
 
                     input {
-                        @apply mt-8 h-10;
+                        @apply mt-8 h-10 px-[30px];
                     }
                 }
                 &__button {

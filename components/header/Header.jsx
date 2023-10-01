@@ -26,10 +26,13 @@ const Header = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [showResults, setShowResults] = useState(false);
 
+    const [isAuth, setIsAuth] = useState(localStorage.getItem('access_token'))
+    // let user = localStorage.getItem('access_token') || '';
     useEffect(() => {
+        console.log(isAuth);
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/v1/product/', {
+                const response = await axios.get('http://51.20.95.11:8000/api/v1/product/', {
                     headers: { Authorization: 'Bearer ' + localStorage.getItem('access_token') },
                 });
                 setProducts(response.data);
@@ -54,6 +57,11 @@ const Header = () => {
         setShowResults(e.target.value !== '');
     };
 
+    const handleLogOut = () => {
+        setIsAuth(false)
+        localStorage.removeItem('access_token')
+    }
+
     return (
         <header className={styles.header}>
             <div className={styles.header_wrapper}>
@@ -73,28 +81,34 @@ const Header = () => {
                         </p>
                         <p>Звонок бесплатный 05:00 – 22:00</p>
                     </div>
-                    <div className={styles.header_wrapper_top__auth}>
-                        <FaUser color="#d60000" />
-                        <Link href="/signup">
-                            Войти<span></span>
-                        </Link>
-                        <hr />
-                        <Link href="/signin" onMouseEnter={openModal} onMouseLeave={closeModal}>
-                            Регистрация
-                        </Link>
-                        {isModalOpen && (
-                            <div
-                                onMouseEnter={openModal}
-                                onMouseLeave={closeModal}
-                                className="z-10 absolute transform -translate-x-[50%] -translate-y-[113%] p-3 border-orange-400 border-2 rounded-md border-spacing-14 bg-white w-[200px]">
-                                <p className="text-[12px] font-bold">Placeholder Translation</p>
-                                <p className="text-[11px]">
-                                    Адрес: г.Бишкек ул.Орозбекова, д. 2/2, офис. №7
-                                </p>
-                                <p className="text-[11px]">Placeholder Translation</p>
-                            </div>
-                        )}
-                    </div>
+                    {
+                        isAuth?
+                            <button onClick={() => handleLogOut()} className='px-[15px] py-[5px] rounded-[5px] bg-[#d60000] text-[#fff]'>Выйти</button>
+                        
+                            :
+                            <div className={styles.header_wrapper_top__auth}>
+                            <FaUser color="#d60000" />
+                            <Link href="/signup">
+                                Войти
+                            </Link>
+                            <hr />
+                            <Link href="/signin" onMouseEnter={openModal} onMouseLeave={closeModal}>
+                                Регистрация
+                            </Link>
+                            {isModalOpen && (
+                                <div
+                                    onMouseEnter={openModal}
+                                    onMouseLeave={closeModal}
+                                    className="z-10 absolute transform -translate-x-[50%] -translate-y-[113%] p-3 border-orange-400 border-2 rounded-md border-spacing-14 bg-white w-[200px]">
+                                    <p className="text-[12px] font-bold">Placeholder Translation</p>
+                                    <p className="text-[11px]">
+                                        Адрес: г.Бишкек ул.Орозбекова, д. 2/2, офис. №7
+                                    </p>
+                                    <p className="text-[11px]">Placeholder Translation</p>
+                                </div>
+                            )}
+                        </div>
+                    }
                 </div>
                 <div className={styles.header_wrapper_btm}>
                     <div className={styles.header_wrapper_btm__catalog}>

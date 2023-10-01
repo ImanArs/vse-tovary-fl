@@ -30,6 +30,9 @@
           grid-template-columns: 500px 132px 140px 160px 60px; 
           .product_wrapper__name {
             @apply flex items-center gap-[20px];
+            img {
+              @apply w-[100px];
+            }
             .product_wrapper__name_info {
               @apply flex w-[314px] flex-col gap-[10px];
               div {

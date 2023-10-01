@@ -40,11 +40,11 @@ const Signin = () => {
                 localStorage.setItem('access_token', accessToken);
                 localStorage.setItem('refresh_token', refreshToken);
                 console.log(accessToken);
-                console.log(refreshToken);
                 setAccessToken(accessToken);
+                router.push('/');
             })
             .catch((err) => {
-                console.log(err.response.data);
+                console.log(err.response?.data);
             });
     };
 
@@ -86,7 +86,7 @@ const Signin = () => {
                                 onChange={handleChange}
                                 required
                             />
-                            <button type="submit">
+                            <button type="submit" className='flex gap-[15px] bg-[#d60000] text-[#fff] px-[30px] py-[10px] rounded-[15px] text-center'>
                                 Продолжить
                                 <FaArrowRight
                                     className={
@@ -106,7 +106,6 @@ export default Signin;
 
 export function TokenProvider({ children }) {
     const [token, setToken] = useState(localStorage.getItem('access_token'));
-    setToken(accToken)
     return <TokenContext.Provider value={{ token, setToken }}>{children}</TokenContext.Provider>;
 }
 

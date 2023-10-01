@@ -1,6 +1,6 @@
 async function getData(id) {
   const response = await fetch(
-    `http://127.0.0.1:8000/api/v1/product/${id}`,
+    `http://51.20.95.11:8000/api/v1/product/${id}`,
     { next: { revalidate: 3000 } }
   );
 

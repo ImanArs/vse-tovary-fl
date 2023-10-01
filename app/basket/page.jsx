@@ -12,7 +12,7 @@ const Basket = () => {
     const router = useRouter();
 
     useEffect(() => {
-        const url = 'http://127.0.0.1:8000/api/v1/product/';
+        const url = 'http://51.20.95.11:8000/api/v1/product/';
         axios
             .get(url, {
                 headers: { Authorization: 'Bearer ' + localStorage.getItem('access_token') },
