@@ -21,16 +21,19 @@ import 'swiper/css/navigation';
 // import required modules
 import { Autoplay, Navigation } from 'swiper/modules';
 import ProdSlider from '@/components/ProdSlider/ProdSlider';
+import { useSelector } from 'react-redux';
 
 export default function Home() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const [prods, setProds] = useState([]); 
+    const [subcategories, setSubcategories] = useState([])
+    
+    const routesArr = useSelector((state) => state.routes.categoryRotes);
 
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => setIsModalOpen(false);
 
     useEffect(() => {
+        console.log(routesArr, 'arrroutes');
         async function fetchData() {
             try {
                 const response = await fetch('http://127.0.0.1:8000/api/v1/product/');
@@ -44,9 +47,19 @@ export default function Home() {
             }
         }
 
-        fetchData(); 
-        console.log(isHovered);
-    }, [isHovered]);
+        fetchData();
+        const getFilteredProds = () => {
+            let subcategories = [];
+            routesArr?.forEach(element => {
+                element?.subcategories?.forEach(elem => {
+                    subcategories.push(elem)
+                })
+            });
+            setSubcategories(subcategories)
+        }
+        getFilteredProds()
+        console.log(subcategories, "state");
+    }, [routesArr]);
     return (
         <main>
             <ToastContainer
@@ -63,7 +76,14 @@ export default function Home() {
             />
             <CategoryRoutes />
             <div className={styles.main_wrapper}>
-                <div className={styles.main_wrapper__left}></div>
+                <div className={styles.main_wrapper__left}>
+                    {routesArr.map((item, index) => (
+                        <p key={item.id} className="flex gap-3 items-center">
+                            <img width={20} src={item.icon} alt="" />
+                            {item.name}
+                        </p>
+                    ))}
+                </div>
                 <div className={styles.main_wrapper__right}>
                     <div
                         onMouseEnter={() => setIsHovered(true)}
@@ -147,11 +167,11 @@ export default function Home() {
             </div>
             <div>
                 <h2>Ваша подборка популярных товаров</h2>
-                <ProdSlider arr={prods} />
+                <ProdSlider arr={subcategories[0]?.products} />
             </div>
             <div>
                 <h2>Ваша подборка товаров со скидкой</h2>
-                <ProdSlider arr={prods} />
+                <ProdSlider arr={subcategories[1]?.products} />
             </div>
             <div>
                 <h2>Ваша подборка товаров для дома</h2>

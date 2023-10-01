@@ -60,7 +60,7 @@ const Header = () => {
                 <div className={styles.header_wrapper_top}>
                     <div className={styles.header_wrapper_top__images}>
                         <Link href={`/`}>
-                            <img className={styles.logo} src="/logo-red.png" alt="Logo" />
+                            <img className={styles.logo} src="/logo-red.svg" alt="Logo" />
                         </Link>
                         <img src="/skidki.png" alt="" />
                     </div>

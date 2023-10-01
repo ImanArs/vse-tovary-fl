@@ -25,7 +25,7 @@ const ProdSlider = ({ arr = [] }) => {
                 navigation={true}
                 modules={[Autoplay, Navigation]}
                 className="my-slider">
-                {arr.length > 0 ? (
+                {arr?.length > 0 ? (
                     arr?.map((item, index) => (
                         <SwiperSlide key={item.id}>
                             <SliderCard

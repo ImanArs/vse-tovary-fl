@@ -6,6 +6,7 @@ import Footer from '@/components/footer/Footer'
 import { Provider } from 'react-redux'
 import { store } from '@/features/store'
 import ReduxProvider from '@/features/provider'
+import CategoryRoutes from '@/features/slices/categoryRotes'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <ReduxProvider>
+          <CategoryRoutes />
           <Header />
           {children}
           <Footer/>
