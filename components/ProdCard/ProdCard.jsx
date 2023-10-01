@@ -1,12 +1,12 @@
 import React from 'react';
-import {AiOutlineHeart} from 'react-icons/ai';
-import {HiShoppingCart} from 'react-icons/hi';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { HiShoppingCart } from 'react-icons/hi';
 
 import styles from './ProdCard.module.scss';
 import { API_URL } from '@/utils/api';
 
 const ProdCard = ({image, name, price}) => { 
-    console.log(image, name, price);
+    
     return (
         <>
             <div className={styles.cart}>
@@ -15,7 +15,7 @@ const ProdCard = ({image, name, price}) => {
                 </div>
                 <div className={styles.cart_image}>
                     <img
-                        src={API_URL + image}
+                        src={API_URL+image}
                         alt={name}
                     />
                 </div>

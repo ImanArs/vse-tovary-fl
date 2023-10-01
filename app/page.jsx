@@ -3,11 +3,15 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from '@/components/sidebar/Sidebar';
 import CategoryRoutes from '@/features/slices/categoryRotes';
 import ProdCard from '@/components/ProdCard/ProdCard';
-import Image from 'next/image'
+import Image from 'next/image';
 
-import styles from '@/styles/main/main.module.scss'
+import styles from '@/styles/main/main.module.scss';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import React Toastify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -17,67 +21,76 @@ import 'swiper/css/navigation';
 // import required modules
 import { Autoplay, Navigation } from 'swiper/modules';
 import ProdSlider from '@/components/ProdSlider/ProdSlider';
+import { useSelector } from 'react-redux';
 
 export default function Home() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isHovered, setIsHovered] = useState(false)
-    const openModal = () => {
-        setIsModalOpen(true);
-    };
-    useEffect(() => {
-        console.log(isHovered);
-    },[isHovered])
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
+    const [isHovered, setIsHovered] = useState(false);
+    const [prods, setProds] = useState([]); 
+    const [subcategories, setSubcategories] = useState([])
+    
+    const routesArr = useSelector((state) => state.routes.categoryRotes);
 
-let prods = [
-    {
-      id:1,
-      image: 'https://cdn.vseinstrumenti.ru/res/content/page_templates/9766f966ed60757e90704ae6e037a44a.jpeg',
-      name: 'propeler',
-      price: 2000
-    },
-    {
-      id:2,
-      image: 'https://cdn.vseinstrumenti.ru/res/content/page_templates/e02736054a0becf739b254aa5c5717f9.jpeg',
-      name: 'lol',
-      price: 2000
-    },
-    {
-      id:3,
-      image: 'https://cdn.vseinstrumenti.ru/res/content/page_templates/8ca1db2f0b695a32d644fdae1adf6b3a.jpeg',
-      name: 'qwertt',
-      price: 2000
-    },
-    {
-      id:4,
-      image: 'https://cdn.vseinstrumenti.ru/res/content/page_templates/e02736054a0becf739b254aa5c5717f9.jpeg',
-      name: 'propeler',
-      price: 2000
-    },
-    {
-        id:5,
-        image: 'https://cdn.vseinstrumenti.ru/res/content/page_templates/8ca1db2f0b695a32d644fdae1adf6b3a.jpeg',
-        name: 'lol',
-        price: 2000
-    },
-    {
-        id:6,
-        image: 'https://cdn.vseinstrumenti.ru/res/content/page_templates/9766f966ed60757e90704ae6e037a44a.jpeg',
-        name: 'qwertt',
-        price: 2000
-    },
-  ]
+
+    useEffect(() => {
+        console.log(routesArr, 'arrroutes');
+        async function fetchData() {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/v1/product/');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setProds(data); 
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        fetchData();
+        const getFilteredProds = () => {
+            let subcategories = [];
+            routesArr?.forEach(element => {
+                element?.subcategories?.forEach(elem => {
+                    subcategories.push(elem)
+                })
+            });
+            setSubcategories(subcategories)
+        }
+        getFilteredProds()
+        console.log(subcategories, "state");
+    }, [routesArr]);
     return (
         <main>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <CategoryRoutes />
             <div className={styles.main_wrapper}>
                 <div className={styles.main_wrapper__left}>
-
+                    {
+                        routesArr.map(((item,index) => 
+                            <p key={item.id} className='flex gap-3 items-center'>
+                                <img width={20} src={item.icon} alt="" />
+                                {item.name}
+                            </p>
+                        ))
+                    }
                 </div>
                 <div className={styles.main_wrapper__right}>
-                    <div onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className='mySwiper'>  
+                    <div
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
+                        className="mySwiper">
                         <Swiper
                             rewind={true}
                             spaceBetween={30}
@@ -87,37 +100,80 @@ let prods = [
                                 disableOnInteraction: false,
                             }}
                             navigation={isHovered}
-                            modules={[Autoplay, Navigation]}
-                        >
-                            <SwiperSlide><img src='https://cdn.vseinstrumenti.ru/imgtmbnf/992x416/res/img/AdFox/992x416_glavnaya_ov_1692194485.jpg' alt=''/></SwiperSlide>
-                            <SwiperSlide><img src='https://cdn.vseinstrumenti.ru/imgtmbnf/992x416/res/img/AdFox/992-416-3_1694167317.jpg' alt=''/></SwiperSlide>
-                            <SwiperSlide><img src='https://cdn.vseinstrumenti.ru/imgtmbnf/992x416/res/img/AdFox/992x416_glavnaya_ov__5__1689679858.jpg' alt=''/></SwiperSlide>
-                            <SwiperSlide><img src='https://cdn.vseinstrumenti.ru/imgtmbnf/992x416/res/img/AdFox/gigani-k-_a-_kop-_l-_-_-992-_416_1676886082.jpg' alt=''/></SwiperSlide>
-                            <SwiperSlide><img src='https://cdn.vseinstrumenti.ru/imgtmbnf/992x416/res/img/AdFox/992x416_glavnaya_ov__11__1694812347.jpg' alt=''/></SwiperSlide>
-                            <SwiperSlide><img src='https://cdn.vseinstrumenti.ru/imgtmbnf/992x416/res/img/AdFox/992-_416_ov_1693720247.jpg' alt=''/></SwiperSlide>
-                            <SwiperSlide><img src='https://cdn.vseinstrumenti.ru/res/content/banners/home_page_top_placeholder_2.jpg' alt=''/></SwiperSlide>
+                            modules={[Autoplay, Navigation]}>
+                            <SwiperSlide>
+                                <img
+                                    src="https://cdn.vseinstrumenti.ru/imgtmbnf/992x416/res/img/AdFox/992x416_glavnaya_ov_1692194485.jpg"
+                                    alt=""
+                                />
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img
+                                    src="https://cdn.vseinstrumenti.ru/imgtmbnf/992x416/res/img/AdFox/992-416-3_1694167317.jpg"
+                                    alt=""
+                                />
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img
+                                    src="https://cdn.vseinstrumenti.ru/imgtmbnf/992x416/res/img/AdFox/992x416_glavnaya_ov__5__1689679858.jpg"
+                                    alt=""
+                                />
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img
+                                    src="https://cdn.vseinstrumenti.ru/imgtmbnf/992x416/res/img/AdFox/gigani-k-_a-_kop-_l-_-_-992-_416_1676886082.jpg"
+                                    alt=""
+                                />
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img
+                                    src="https://cdn.vseinstrumenti.ru/imgtmbnf/992x416/res/img/AdFox/992x416_glavnaya_ov__11__1694812347.jpg"
+                                    alt=""
+                                />
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img
+                                    src="https://cdn.vseinstrumenti.ru/imgtmbnf/992x416/res/img/AdFox/992-_416_ov_1693720247.jpg"
+                                    alt=""
+                                />
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img
+                                    src="https://cdn.vseinstrumenti.ru/res/content/banners/home_page_top_placeholder_2.jpg"
+                                    alt=""
+                                />
+                            </SwiperSlide>
                         </Swiper>
                     </div>
                     <div className={styles.popular}>
                         <div>
-                            <img src="https://cdn.vseinstrumenti.ru/res/content/page_templates/8ca1db2f0b695a32d644fdae1adf6b3a.jpeg" alt="" />
+                            <img
+                                src="https://cdn.vseinstrumenti.ru/res/content/page_templates/8ca1db2f0b695a32d644fdae1adf6b3a.jpeg"
+                                alt=""
+                            />
                         </div>
                         <div>
-                            <img src="https://cdn.vseinstrumenti.ru/res/content/page_templates/e02736054a0becf739b254aa5c5717f9.jpeg" alt="" />
+                            <img
+                                src="https://cdn.vseinstrumenti.ru/res/content/page_templates/e02736054a0becf739b254aa5c5717f9.jpeg"
+                                alt=""
+                            />
                         </div>
                         <div>
-                            <img src="https://cdn.vseinstrumenti.ru/res/content/page_templates/9766f966ed60757e90704ae6e037a44a.jpeg" alt="" />
+                            <img
+                                src="https://cdn.vseinstrumenti.ru/res/content/page_templates/9766f966ed60757e90704ae6e037a44a.jpeg"
+                                alt=""
+                            />
                         </div>
                     </div>
                 </div>
             </div>
             <div>
                 <h2>Ваша подборка популярных товаров</h2>
-                <ProdSlider arr={prods} />
+                <ProdSlider arr={subcategories[0]?.products} />
             </div>
             <div>
                 <h2>Ваша подборка товаров со скидкой</h2>
-                <ProdSlider arr={prods} />
+                <ProdSlider arr={subcategories[1]?.products} />
             </div>
             <div>
                 <h2>Ваша подборка товаров для дома</h2>
