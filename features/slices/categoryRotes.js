@@ -1,5 +1,5 @@
 // CategoryRoutes.js
-'use client'
+'use client';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
@@ -25,7 +25,7 @@ const CategoryRoutes = () => {
                 cookies.set('routes', res.data);
             })
             .catch((err) => {
-                console.log(err.response.data);
+                // console.log(err.response.data);
             });
     };
 
