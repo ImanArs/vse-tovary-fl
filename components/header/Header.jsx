@@ -26,9 +26,10 @@ const Header = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [showResults, setShowResults] = useState(false);
 
-    const [isAuth, setIsAuth] = useState(localStorage.getItem('access_token'))
+    const [isAuth, setIsAuth] = useState('')
     // let user = localStorage.getItem('access_token') || '';
     useEffect(() => {
+        setIsAuth(localStorage.getItem('access_token'))
         console.log(isAuth);
         const fetchData = async () => {
             try {

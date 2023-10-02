@@ -73,7 +73,7 @@ function ProductCard({ name, price, image, productId, accessToken, href }) {
                         color="#fff"
                         onClick={() => setCartProductId(productId)}
                     />
-                </div>
+                </div>    
             </div>
             <Link href={href}>
                 <button>Подробнее</button>
