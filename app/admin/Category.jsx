@@ -18,7 +18,7 @@ const Category = () => {
     }, []);
 
     const fetchCategories = () => {
-        const url = 'http://127.0.0.1:8000/api/v1/category/crud/';
+        const url = 'http://51.20.95.11:8000/api/v1/category/crud/';
         axios
             .get(url, {
                 headers: {
@@ -60,7 +60,7 @@ const Category = () => {
         //     formData.append('icon', null);
         // }
 
-        const url = 'http://127.0.0.1:8000/api/v1/category/crud/';
+        const url = 'http://51.20.95.11:8000/api/v1/category/crud/';
 
         axios
             .post(url, formData, {
@@ -78,7 +78,7 @@ const Category = () => {
     };
 
     const handleDelete = (id) => {
-        const url = `http://127.0.0.1:8000/api/v1/category/crud/${id}/`;
+        const url = `http://51.20.95.11:8000/api/v1/category/crud/${id}/`;
         axios
             .delete(url,{
                 headers: {

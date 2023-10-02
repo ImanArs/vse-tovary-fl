@@ -6,7 +6,7 @@ const Cards = () => {
     const [products, setProducts] = useState([]);
 
     const fetchProducts = () => {
-        const url = 'http://127.0.0.1:8000/api/v1/product/';
+        const url = 'http://51.20.95.11:8000/api/v1/product/';
 
         axios
             .get(url, {
@@ -27,7 +27,7 @@ const Cards = () => {
     }, []);
 
     const handleDelete = (id) => {
-        const url = `http://127.0.0.1:8000/api/v1/product/${id}/`;
+        const url = `http://51.20.95.11:8000/api/v1/product/${id}/`;
 
         axios
             .delete(url, {

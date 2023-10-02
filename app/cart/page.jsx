@@ -1,18 +1,49 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { MdDeleteOutline } from 'react-icons/md';
 
 import styles from './Cart.module.scss';
+import axios from 'axios';
 
 const page = () => {
     const [inputSearch, setInputSearch] = useState('');
-
+    const [cartArr, setCartArr] = useState(null)
+    useEffect(() => {
+        axios
+          .get('http://51.20.95.11:8000/api/v1/cart/view_cart/', {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+              'Content-Type': 'application/json',
+            },
+          })
+          .then((response) => {
+            if (response.status !== 200) {
+              throw new Error('Network response was not ok');
+            }
+            const data = response.data;
+            setCartArr(data)
+            console.log(data, 'cart');
+          })
+          .catch((error) => {
+            console.error('Error fetching data:', error);
+          });
+        //   console.log(cartArr?.product);
+        
+    }, []);
     const handleSearchSubmit = (e) => {
         e.preventDefault();
         setInputSearch('');
     };
+    let summary = 0
+    cartArr?.forEach(elem =>{
+        summary += +elem.product.price
+    })
+    // setSumCart()
+    console.log(summary);
+    
+    
     return (
         <main className={styles.cart}>
             <div className={styles.cartHeading}>
@@ -40,28 +71,33 @@ const page = () => {
                     </div>
                     <hr />
                     <div className={styles.products}>
-                        <div className={styles.product_wrapper}>
-                            <div className={styles.product_wrapper__name}>
-                                <img
-                                    src="https://cdn.vseinstrumenti.ru/images/goods/stroitelnyj-instrument/shurupoverty/1760653/98x88/53326035.jpg"
-                                    alt=""
-                                />
-                                <div className={styles.product_wrapper__name_info}>
-                                    <div>Лучшая цена</div>
-                                    <span>код: 17476254</span>
-                                    <p>Дрель-шуруповерт AEG BS18G4-202C 4935478630</p>
-                                    <span>
-                                        Можно забрать <b>сегодня</b>
-                                    </span>
+                        {
+                            cartArr?.map(elem => (
+                            <div className={styles.product_wrapper} key={elem.id}>
+                                <div className={styles.product_wrapper__name}>
+                                    <img
+                                        src={elem.product.image1}
+                                        alt={elem.product.name}
+                                    />
+                                    <div className={styles.product_wrapper__name_info}>
+                                        <div>Лучшая цена</div>
+                                        <span>код: 17476254</span>
+                                        <p>{elem.product.name} AEG BS18G4-202C 4935478630</p>
+                                        <span>
+                                            Можно забрать <b>сегодня</b>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className={styles.product_wrapper__price}>{elem.product.price} р</div>
+                                <div>{elem.quantity}</div>
+                                <div>{elem.product.price} р.</div>
+                                <div className={styles.userTools}>
+                                    <AiOutlineHeart /> <MdDeleteOutline />
                                 </div>
                             </div>
-                            <div className={styles.product_wrapper__price}>13014р</div>
-                            <div>кол-во</div>
-                            <div>13 014 р.</div>
-                            <div className={styles.userTools}>
-                                <AiOutlineHeart /> <MdDeleteOutline />{' '}
-                            </div>
-                        </div>
+                            ))
+                        }
+                        
                     </div>
                 </div>
                 <div className={styles.cartBill}>
@@ -73,7 +109,7 @@ const page = () => {
                         Вес заказа: <span>1кг</span>
                     </p>
                     <p>
-                        Общая стоимость: <span className={styles.bill}>13014p</span>
+                        Общая стоимость: <span className={styles.bill}>{summary}</span>
                     </p>
                     <div className={styles.cartBill_promocode}>
                         <input type="text" name="" id="" placeholder="Введите промокод" />

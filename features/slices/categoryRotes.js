@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { setCategoryRoutes } from './categoryRoutesSlice';
 import Cookies from 'universal-cookie';
+import { API_URL } from '@/utils/api';
 
 const CategoryRoutes = () => {
     const cookies = new Cookies();
@@ -12,7 +13,7 @@ const CategoryRoutes = () => {
     const categoryRoutes = useSelector((state) => state?.routes);
 
     const fetchCategories = async () => {
-        const url = 'http://127.0.0.1:8000/api/v1/category/crud/';
+        const url = `${API_URL}/api/v1/category/crud/`;
         await axios
             .get(url, {
                 headers: {
@@ -21,7 +22,6 @@ const CategoryRoutes = () => {
             })
             .then((res) => {
                 dispatch(setCategoryRoutes(res.data));
-                console.log(res.data);
                 cookies.set('routes', res.data);
             })
             .catch((err) => {

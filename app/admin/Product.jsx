@@ -26,7 +26,7 @@ const Product = () => {
     }, []);
 
     const fetchCategories = () => {
-        const url = 'http://127.0.0.1:8000/api/v1/category/crud/';
+        const url = 'http://51.20.95.11:8000/api/v1/category/crud/';
         axios
             .get(url, {
                 headers: {
@@ -71,7 +71,7 @@ const Product = () => {
         formData.append('price', state.price);
         formData.append('category', state.category);
 
-        const url = 'http://127.0.0.1:8000/api/v1/product/';
+        const url = 'http://51.20.95.11:8000/api/v1/product/';
 
         axios
             .post(url, formData, {

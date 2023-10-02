@@ -6,7 +6,7 @@ const Products = () => {
 
     useEffect(() => {
         const fetchProducts = () => {
-            const url = 'http://127.0.0.1:8000/api/v1/products/';
+            const url = 'http://51.20.95.11:8000/api/v1/products/';
             axios
                 .get(url, {
                     headers: {

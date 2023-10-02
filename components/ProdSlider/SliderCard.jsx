@@ -22,26 +22,30 @@ function ProductCard({ name, price, image, productId, accessToken, href }) {
         }
     }
     useEffect(() => {
+        let accToken = localStorage.getItem('access_token')
         if (cartProductId !== null) {
             const headers = {
-                Authorization: `Bearer ${accessToken}`,
+                Authorization: `Bearer ${accToken}`,
                 'Content-Type': 'application/json',
             };
 
-            fetch(`http://127.0.0.1:8000/api/v1/cart/add_to_cart/${cartProductId}/`, {
+            fetch(`http://51.20.95.11:8000/api/v1/cart/add_to_cart/${cartProductId}/`, {
                 method: 'POST',
                 headers: headers,
             })
                 .then((response) => {
                     if (response.ok) {
+                        console.log(response.json().data());
+                        console.log('response 200!');
                     } else {
+                        console.log('response not ok');
                     }
                 })
                 .catch((error) => {
                     console.error('Произошла ошибка при запросе:', error);
                 });
         }
-    }, [cartProductId, accessToken]); 
+    }, [cartProductId]); 
 
     const result = checkImage(image)
 
