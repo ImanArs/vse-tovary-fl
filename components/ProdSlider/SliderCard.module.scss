@@ -1,5 +1,5 @@
 .card{
-  @apply w-[230px] rounded-lg border py-[15px] px-[10px]  ; 
+  @apply w-[230px] min-h-[300px] rounded-lg border py-[15px] px-[10px]  ; 
   &_heart{
       @apply flex mt-4 mr-4 text-[30px] text-[#666]; 
       &__svg{
@@ -9,7 +9,7 @@
   &_image{
       @apply w-full;
       img{
-        @apply w-full ;
+        @apply w-full h-[150px];
       }
   }
   &_name{
