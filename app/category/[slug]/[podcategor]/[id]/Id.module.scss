@@ -1,12 +1,11 @@
 .main {
+    @apply w-[100%] sm:w-[100%] p-8;
     h1 {
         @apply text-2xl leading-7 font-bold;
     }
-    @apply rounded-lg shadow-lg p-8;
     &__wrapper {
-        @apply flex my-4 gap-4 justify-between;
+       @apply  md:flex my-4 md:gap-4 md:justify-between lg:flex;
         &__right {
-            // @apply mt-4;
             &__text {
                 span {
                     @apply text-sm;
@@ -16,7 +15,7 @@
             &__image {
                 @apply flex justify-center mt-4;
                 img {
-                    @apply w-[80%];
+                    @apply w-[40%] sm:w-[80%];
                 }
             }
         }

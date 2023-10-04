@@ -22,7 +22,8 @@ const NavBar = () => {
             onMouseLeave={() => setHovered(false)}
             onMouseEnter={() => setHovered(true)}>
             <button>
-                <GiHamburgerMenu color="#fff" /> Каталог товаров
+                <GiHamburgerMenu color="#fff" /> 
+                <span>Каталог товаров</span>
             </button>
             <div className={styles.catalog_wrapper}>
                 {hovered && <CategoriesList routesArr={savedRoutes} />}

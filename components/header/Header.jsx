@@ -69,9 +69,9 @@ const Header = () => {
                 <div className={styles.header_wrapper_top}>
                     <div className={styles.header_wrapper_top__images}>
                         <Link href={`/`}>
-                            <img className={styles.logo} src="/logo-red.svg" alt="Logo" />
+                            <img className={styles.logo} src="/logo-red-1.svg" alt="Logo" />
                         </Link>
-                        <img src="/skidki.png" alt="" />
+                        {/* <img className={styles.image} src="/skidki.png" alt="" /> */}
                     </div>
                     <div className={styles.header_wrapper_top__phone}>
                         <p>
@@ -96,18 +96,7 @@ const Header = () => {
                             <Link href="/signin" onMouseEnter={openModal} onMouseLeave={closeModal}>
                                 Регистрация
                             </Link>
-                            {isModalOpen && (
-                                <div
-                                    onMouseEnter={openModal}
-                                    onMouseLeave={closeModal}
-                                    className="z-10 absolute transform -translate-x-[50%] -translate-y-[113%] p-3 border-orange-400 border-2 rounded-md border-spacing-14 bg-white w-[200px]">
-                                    <p className="text-[12px] font-bold">Placeholder Translation</p>
-                                    <p className="text-[11px]">
-                                        Адрес: г.Бишкек ул.Орозбекова, д. 2/2, офис. №7
-                                    </p>
-                                    <p className="text-[11px]">Placeholder Translation</p>
-                                </div>
-                            )}
+                            
                         </div>
                     }
                 </div>
@@ -115,10 +104,10 @@ const Header = () => {
                     <div className={styles.header_wrapper_btm__catalog}>
                         <NavBar />
                     </div>
-                    <p className={styles.header_wrapper_btm__tools}>
+                    {/* <p className={styles.header_wrapper_btm__tools}>
                         <AiOutlinePercentage color="#d60000" />
                         Акции
-                    </p>
+                    </p> */}
                     <form action="" className={styles.header_wrapper_btm__search}>
                         <input
                             type="text"
@@ -131,13 +120,23 @@ const Header = () => {
                             <FiSearch />
                         </button>
                     </form>
-                    <p className={styles.header_wrapper_btm__tools}>
-                        <AiFillHeart color="#d60000" /> Избранное
-                    </p>
-                    <p className={styles.header_wrapper_btm__tools}>
+                       <div className='flex gap-4'>
+                         <Link href="/" className={styles.header_wrapper_btm__tools}>
+                            <AiFillHeart color="#d60000" />
+                       <span>
+                          Избранное
+                       </span>
+                        </Link>
+
+                        
+                        <Link href="/cart" className={styles.header_wrapper_btm__tools}> 
                         <FaShoppingCart color="#d60000" />
-                        <Link href="/cart"> Корзина </Link>
-                    </p>
+                         <span>
+
+                         Корзина 
+                         </span>
+                         </Link>
+                       </div>
                 </div>
                 <div className={styles.product_input}>
                     {showResults && (
