@@ -4,12 +4,16 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import styles from './Signup.module.scss';
 import { FaArrowRight } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { setUser } from '@/features/slices/userSlice';
 
 const Signup = () => {
     const [state, setState] = useState({
         username: '',
         password: '',
     });
+
+    const dispatch = useDispatch()
 
     const router = useRouter();
 
@@ -20,15 +24,19 @@ const Signup = () => {
         });
     };
     const handleSubmit = (e) => {
+        const data = {
+            username: state.username,
+            password: state.password,
+        }
         e.preventDefault();
-        const { username, password } = state;
         const url = 'http://51.20.95.11:8000/api/v1/account/login/';
-
         axios
-            .post(url, { username, password })
+            .post(url, data)
             .then((res) => {
                 const accessToken = res.data['access'];
                 localStorage.setItem('access_token', accessToken);
+                console.log(res, 'res');
+                dispatch(setUser(res.data))
                 router.push('/');
             })
             .catch((err) => {

@@ -1,48 +1,83 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { MdDeleteOutline } from 'react-icons/md';
 
 import styles from './Cart.module.scss';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { removeFromCart } from '@/features/slices/cart-slice';
 
 const page = () => {
     const [inputSearch, setInputSearch] = useState('');
     const [cartArr, setCartArr] = useState(null)
+    const [deleteId, setDeleteId] = useState(null)
+    const [token, setToken] = useState('')
+
+
     useEffect(() => {
-        axios
-          .get('http://51.20.95.11:8000/api/v1/cart/view_cart/', {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-              'Content-Type': 'application/json',
-            },
-          })
-          .then((response) => {
-            if (response.status !== 200) {
-              throw new Error('Network response was not ok');
-            }
-            const data = response.data;
-            setCartArr(data)
-            console.log(data, 'cart');
-          })
-          .catch((error) => {
-            console.error('Error fetching data:', error);
-          });
-        //   console.log(cartArr?.product);
-        
+        const access_token = localStorage.getItem('access_token')
+        setToken(access_token)
+    }, [])
+    useEffect(() => {
+        console.log(token);
+    },[token])
+    useEffect(() => {
+        const getAllCart = () => {
+            axios
+            .get('http://51.20.95.11:8000/api/v1/cart/view_cart/', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then((response) => {
+                if (response.status !== 200) {
+                throw new Error('Network response was not ok');
+                }
+                const data = response.data;
+                setCartArr(data)
+                console.log(data, 'cart again');
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+            });
+        }
+        getAllCart()
     }, []);
+
+
+const deleteCartItem = (id) => {
+    axios
+        .delete(`http://51.20.95.11:8000/api/v1/cart/remove_from_cart/3`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                'Content-Type': 'application/json',
+                }
+        })
+        .then((response) => {
+            console.log(response);
+            if (response.status == 204) {
+             console.log(`deleted ${id}`);
+            } 
+        })
+        .catch((error) => {
+            console.error('Error fetching cart delete:', error);
+        });
+}
+    const handleDelete = (id) => {
+        setDeleteId(id)
+        deleteCartItem(id)
+    }
     const handleSearchSubmit = (e) => {
         e.preventDefault();
         setInputSearch('');
     };
     let summary = 0
     cartArr?.forEach(elem =>{
-        summary += +elem.product.price
+        summary += +elem.product.price * elem.quantity
     })
-    // setSumCart()
-    console.log(summary);
-    
     
     return (
         <main className={styles.cart}>
@@ -92,7 +127,8 @@ const page = () => {
                                 <div>{elem.quantity}</div>
                                 <div>{elem.product.price} р.</div>
                                 <div className={styles.userTools}>
-                                    <AiOutlineHeart /> <MdDeleteOutline />
+                                    <AiOutlineHeart /> 
+                                    <MdDeleteOutline onClick={() => handleDelete(elem.id)} />
                                 </div>
                             </div>
                             ))
@@ -103,7 +139,7 @@ const page = () => {
                 <div className={styles.cartBill}>
                     <h2>Ваш заказ</h2>
                     <p>
-                        Выбрано товаров: <span>1</span>
+                        Выбрано товаров: <span>{cartArr?.length}</span>
                     </p>
                     <p>
                         Вес заказа: <span>1кг</span>
@@ -125,5 +161,4 @@ const page = () => {
         </main>
     );
 };
-
 export default page;
