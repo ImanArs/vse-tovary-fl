@@ -50,7 +50,7 @@ const page = () => {
 
 const deleteCartItem = (id) => {
     axios
-        .delete(`http://51.20.95.11:8000/api/v1/cart/remove_from_cart/3`, {
+        .delete(`http://51.20.95.11:8000/api/v1/cart/remove_from_cart/${id}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                 'Content-Type': 'application/json',
@@ -128,7 +128,7 @@ const deleteCartItem = (id) => {
                                 <div>{elem.product.price} р.</div>
                                 <div className={styles.userTools}>
                                     <AiOutlineHeart /> 
-                                    <MdDeleteOutline onClick={() => handleDelete(elem.id)} />
+                                    <MdDeleteOutline onClick={() => handleDelete(elem.product.id)} />
                                 </div>
                             </div>
                             ))

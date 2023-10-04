@@ -32,7 +32,6 @@ function ProductCard({ name, price, image, productId, accessToken, href }) {
                 Authorization: `Bearer ${accToken}`,
                 'Content-Type': 'application/json',
             };
-
             fetch(`http://51.20.95.11:8000/api/v1/cart/add_to_cart/${cartProductId}/`, {
                 method: 'POST',
                 headers: headers,
@@ -51,13 +50,22 @@ function ProductCard({ name, price, image, productId, accessToken, href }) {
     }, [cartProductId]); 
     const result = checkImage(image)
 
+    const handleAddFav = (item) => {
+        const favArr = JSON.parse(localStorage.getItem('favourites')) || [];      
+        favArr.push(item);
+        localStorage.setItem('favourites', JSON.stringify(favArr));
+      };
+    const delFav = () => {
+        localStorage.removeItem('favourites')
+    }
+
     return (
         <div className={styles.card}>
             <div className={styles.card_heart} onClick={toggleFavorite}>
                 {isFavorite ? (
-                    <AiFillHeart className={styles.card_heart__svg} color="#d60000" />
+                    <AiFillHeart className={styles.card_heart__svg} color="#d60000" onClick={() => delFav()} />
                 ) : (
-                    <AiOutlineHeart className={styles.card_heart__svg} />
+                    <AiOutlineHeart className={styles.card_heart__svg} onClick={() => handleAddFav(name)} />
                 )}
             </div>
             <div className={styles.card_image}>
@@ -73,7 +81,7 @@ function ProductCard({ name, price, image, productId, accessToken, href }) {
                     <HiShoppingCart
                         className={styles.card_icons__svg}
                         color="#fff"
-                        onClick={() => handleCartBtn()}
+                        onClick={() => handleCartBtn(name)}
                     />
                 </div>    
             </div>

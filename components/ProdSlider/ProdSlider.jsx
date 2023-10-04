@@ -11,6 +11,7 @@ import { Navigation, Autoplay } from 'swiper/modules';
 import SliderCard from './SliderCard';
 
 const ProdSlider = ({ route }) => {
+
     return (
         <div>
             <Swiper
