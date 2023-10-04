@@ -6,6 +6,7 @@ import styles from './SliderCard.module.scss';
 import { API_URL } from '@/utils/api';
 import Link from 'next/link';
 
+
 function ProductCard({ name, price, image, productId, accessToken, href }) {
     const [isFavorite, setIsFavorite] = useState(false);
     const [cartProductId, setCartProductId] = useState(null);
@@ -13,6 +14,9 @@ function ProductCard({ name, price, image, productId, accessToken, href }) {
     const toggleFavorite = () => {
         setIsFavorite(!isFavorite);
     };
+    const handleCartBtn = () => {
+        setCartProductId(productId)
+    }
 
     const checkImage = (img) => {
         if (img.slice(0,4) == 'http') {
@@ -33,20 +37,18 @@ function ProductCard({ name, price, image, productId, accessToken, href }) {
                 method: 'POST',
                 headers: headers,
             })
-                .then((response) => {
-                    if (response.ok) {
-                        console.log(response.json().data());
-                        console.log('response 200!');
-                    } else {
-                        console.log('response not ok');
-                    }
-                })
-                .catch((error) => {
-                    console.error('Произошла ошибка при запросе:', error);
-                });
+            .then((response) => {
+                if (response.ok) {
+                    console.log('response 200!');
+                } else {
+                    console.log('response not ok');
+                }
+            })
+            .catch((error) => {
+                console.error('Произошла ошибка при запросе:', error);
+            });
         }
     }, [cartProductId]); 
-
     const result = checkImage(image)
 
     return (
@@ -71,7 +73,7 @@ function ProductCard({ name, price, image, productId, accessToken, href }) {
                     <HiShoppingCart
                         className={styles.card_icons__svg}
                         color="#fff"
-                        onClick={() => setCartProductId(productId)}
+                        onClick={() => handleCartBtn()}
                     />
                 </div>    
             </div>

@@ -4,10 +4,15 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import styles from './Signin.module.scss';
 import { FaArrowRight } from 'react-icons/fa';
+import { setUser } from '@/features/slices/userSlice';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/navigation';
 
 const TokenContext = React.createContext();
 
 const Signin = () => {
+    const router = useRouter()
+    const dispath = useDispatch()
     const [state, setState] = useState({
         username: '',
         password: '',
@@ -39,8 +44,9 @@ const Signin = () => {
                 const refreshToken = res.data['refresh'];
                 localStorage.setItem('access_token', accessToken);
                 localStorage.setItem('refresh_token', refreshToken);
-                console.log(accessToken);
                 setAccessToken(accessToken);
+                console.log(res.data);
+                dispath(setUser(res.data))
                 router.push('/');
             })
             .catch((err) => {

@@ -9,10 +9,16 @@ import Link from 'next/link';
 import axios from 'axios';
 import NavBar from './NavBar';
 import Cookies from 'universal-cookie';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeUser } from '@/features/slices/userSlice';
 
 const Header = () => {
     const cookie = new Cookies();
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const dispath = useDispatch()
+    const user = useSelector(state => state.user.user)
+    console.log(user);
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -47,7 +53,7 @@ const Header = () => {
         };
 
         fetchData();
-    }, []);
+    }, [user]);
 
     const filteredProducts = products.filter((product) =>
         product.name.toLowerCase().includes(searchQuery.toLowerCase()),
@@ -61,6 +67,7 @@ const Header = () => {
     const handleLogOut = () => {
         setIsAuth(false)
         localStorage.removeItem('access_token')
+        dispath(removeUser())
     }
 
     return (
@@ -83,9 +90,11 @@ const Header = () => {
                         <p>Звонок бесплатный 05:00 – 22:00</p>
                     </div>
                     {
-                        isAuth?
-                            <button onClick={() => handleLogOut()} className='px-[15px] py-[5px] rounded-[5px] bg-[#d60000] text-[#fff]'>Выйти</button>
-                        
+                        Object.keys(user)?.length != 0 ?
+                            <div className='flex gap-2 items-center'>
+                                <p>{user?.user?.username}</p>
+                                <button onClick={() => handleLogOut()} className='px-[15px] py-[5px] rounded-[5px] bg-[#d60000] text-[#fff]'>Выйти</button>
+                            </div>
                             :
                             <div className={styles.header_wrapper_top__auth}>
                             <FaUser color="#d60000" />
