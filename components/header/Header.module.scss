@@ -1,5 +1,5 @@
 .header {
-    @apply max-w-[100%] m-auto;
+    @apply  max-w-[100%] xl:w-[1380px] m-auto;
     &_wrapper {
         @apply w-[100%]  m-auto lg:top-[7.5%];
         &_top {

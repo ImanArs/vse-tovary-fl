@@ -33,7 +33,8 @@ const Header = () => {
 
     const user = useSelector(state => state.user.user)
     useEffect(() => {
-        const userStorage = JSON.parse(localStorage.getItem('user'));
+        const userLocal = localStorage.getItem('user')
+        const userStorage = userLocal
         console.log(userStorage, "user");
         const userToUse = userStorage || {};
         dispath(setUser(userToUse));
