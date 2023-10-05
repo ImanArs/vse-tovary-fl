@@ -11,12 +11,28 @@ import { Navigation, Autoplay } from 'swiper/modules';
 import SliderCard from './SliderCard';
 
 const ProdSlider = ({ route }) => {
+    const breakpoints = {
+        320: {
+            slidesPerView: 1,
+        },
+        480: {
+            slidesPerView: 2,
+        },
+        768: {
+            slidesPerView: 3,
+        },
+        1024: {
+            slidesPerView: 4,
+        },
+        1200: {
+            slidesPerView: 5,
+        },
+    };
 
     return (
         <div>
-            <Swiper
+              <Swiper
                 rewind={true}
-                slidesPerView={5}
                 spaceBetween={30}
                 autoplay={{
                     delay: 2500,
@@ -24,7 +40,9 @@ const ProdSlider = ({ route }) => {
                 }}
                 navigation={true}
                 modules={[Autoplay, Navigation]}
-                className="my-slider">
+                className="my-slider"
+                breakpoints={breakpoints}
+            >
                 {route?.products?.length > 0 ? (
                     route?.products?.map((item, index) => (
                         <SwiperSlide key={item.id}>

@@ -25,6 +25,7 @@
                 }
                 &__button {
                     @apply flex justify-between mt-8;
+
                     button {
                         @apply px-6 py-3 bg-red-600 text-white flex;
                         border-radius: 6px;
@@ -36,6 +37,8 @@
                         @apply text-base text-black px-6 py-2;
                     }
                 }
+
+               
             }
         }
     }

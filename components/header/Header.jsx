@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { FaUser, FaShoppingCart } from 'react-icons/fa';
 import { AiOutlinePercentage, AiFillHeart } from 'react-icons/ai';
 import { FiSearch } from 'react-icons/fi';
-import { RiBarChartFill } from 'react-icons/ri';
 import styles from '@/components/header/Header.module.scss';
 import Link from 'next/link';
 import axios from 'axios';
