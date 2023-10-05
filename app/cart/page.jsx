@@ -7,7 +7,7 @@ import { MdDeleteOutline } from 'react-icons/md';
 import styles from './Cart.module.scss';
 import axios from 'axios';
 
-const page = () => {
+const Page = () => {
     const [inputSearch, setInputSearch] = useState('');
     const [cartArr, setCartArr] = useState(null)
     const [deleteId, setDeleteId] = useState(null)
@@ -158,4 +158,4 @@ const page = () => {
         </main>
     );
 };
-export default page;
+export default Page;

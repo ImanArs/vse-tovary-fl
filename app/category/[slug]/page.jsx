@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-const page = ({ params }) => {
+const Page = ({ params }) => {
     const categoryRoutes = useSelector((state) => state.routes.categoryRotes);
     const [categoryName, setCategoryName] = useState('');
     const [subCategory, setSubCategories] = useState([]);
@@ -37,4 +37,4 @@ const page = ({ params }) => {
     );
 };
 
-export default page;
+export default Page;

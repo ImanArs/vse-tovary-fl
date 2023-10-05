@@ -8,7 +8,7 @@ import styles from '../cart/Cart.module.scss';
 import axios from 'axios';
 import { API_URL } from '@/utils/api';
 
-const page = () => {
+const Page = () => {
     const [inputSearch, setInputSearch] = useState('');
     const [favArr, setFavArr] = useState(null)
     const [deleteId, setDeleteId] = useState(null)
@@ -139,4 +139,4 @@ const page = () => {
         </main>
     );
 };
-export default page;
+export default Page;

@@ -4,7 +4,7 @@ import styles from './Id.module.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const page = () => {
+const Page = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isNextModalOpen, setIsNextModalOpen] = useState(false);
 
@@ -156,4 +156,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;
