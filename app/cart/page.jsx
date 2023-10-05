@@ -78,7 +78,7 @@ const page = () => {
                 <h1>Корзина</h1>
                 <span>№ 1695-1984-38867</span>
             </div>
-            <form onSubmit={handleSearchSubmit} className={styles.cartSearch}>
+            {/* <form onSubmit={handleSearchSubmit} className={styles.cartSearch}>
                 <input
                     type="text"
                     placeholder="Быстрое добавление: введите наименование или код товара"
@@ -88,7 +88,7 @@ const page = () => {
                 <button>
                     <FiSearch color="#666" />
                 </button>
-            </form>
+            </form> */}
             <div className={styles.cartItems}>
                 <div className={styles.cart_wrapper}>
                     <div className={styles.cart_wrapper__tabs}>
