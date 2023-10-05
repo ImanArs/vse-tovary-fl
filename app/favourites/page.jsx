@@ -4,74 +4,56 @@ import { FiSearch } from 'react-icons/fi';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { MdDeleteOutline } from 'react-icons/md';
 
-import styles from './Cart.module.scss';
+import styles from '../cart/Cart.module.scss';
 import axios from 'axios';
+import { API_URL } from '@/utils/api';
 
 const page = () => {
     const [inputSearch, setInputSearch] = useState('');
-    const [cartArr, setCartArr] = useState(null)
+    const [favArr, setFavArr] = useState(null)
     const [deleteId, setDeleteId] = useState(null)
     const [token, setToken] = useState('')
 
-    const getAllCart = () => {
-        axios
-        .get('http://51.20.95.11:8000/api/v1/cart/view_cart/', {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-                'Content-Type': 'application/json',
-            }
-        })
-        .then((response) => {
-            if (response.status !== 200) {
-            throw new Error('Network response was not ok');
-            }
-            const data = response.data;
-            setCartArr(data)
-            console.log(data, 'cart again');
-        })
-        .catch((error) => {
-            console.error('Error fetching data:', error);
-        });
-    }
 
-    const deleteCartItem = async (id) => {
-        try {
-          const response = await axios.delete(`http://51.20.95.11:8000/api/v1/cart/remove_from_cart/${id}`, {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-              'Content-Type': 'application/json',
-            },
-          });
-          if (response.status === 204) {
-            console.log(`Deleted ${id}`);
-            getAllCart();
-          }
-        } catch (error) {
-          console.error('Error fetching cart delete:', error);
-        }
-      };
-    const handleDelete = (id) => {
-        setDeleteId(id)
-        deleteCartItem(id)
-    }
-    const handleSearchSubmit = (e) => {
-        e.preventDefault();
-        setInputSearch('');
-    };
-    let summary = 0
-    cartArr?.forEach(elem =>{
-        summary += +elem.product.price * elem.quantity
-    })
     useEffect(() => {
-        if (deleteId !== null) {
-            getAllCart();
-        }
+        const access_token = localStorage.getItem('access_token')
+        setToken(access_token)
+    }, [])
+    useEffect(() => {
+        console.log(token);
+    },[token])
+    useEffect(() => {
+      const favArr = JSON.parse(localStorage.getItem('favourites'))
+      console.log(favArr);
+      setFavArr(favArr)
     }, [deleteId]);
 
-    useEffect(() => {
-        getAllCart();
-    }, []);
     
+    const handleSearchSubmit = (e) => {
+      e.preventDefault();
+      setInputSearch('');
+    };
+
+    let summary = 0
+    favArr?.forEach(elem =>{
+        summary += +elem.price
+    })
+
+    const checkImage = (img) => {
+      if (img.slice(0,4) == 'http') {
+          return img
+      }else {
+          return API_URL+img
+      }
+    }
+    const handleDelete = (id) => {
+      setDeleteId(id)
+      const favArr = JSON.parse(localStorage.getItem('favourites')) || [];    
+      const uptFavArr = favArr.filter(item => item.id != id)
+      localStorage.setItem('favourites', JSON.stringify(uptFavArr))
+      console.log(uptFavArr, 'deleteed');
+      setDeleteId('')
+    }
     return (
         <main className={styles.cart}>
             <div className={styles.cartHeading}>
@@ -100,29 +82,28 @@ const page = () => {
                     <hr />
                     <div className={styles.products}>
                         {
-                            cartArr?.length > 0 ? (
-                                cartArr?.map(elem => (
+                            favArr?.length > 0 ? (
+                              favArr?.map(elem => (
                                 <div className={styles.product_wrapper} key={elem.id}>
                                     <div className={styles.product_wrapper__name}>
                                         <img
-                                            src={elem.product.image1}
-                                            alt={elem.product.name}
+                                            src={checkImage(elem.image1)}
+                                            alt={elem.name}
                                         />
                                         <div className={styles.product_wrapper__name_info}>
                                             <div>Лучшая цена</div>
                                             <span>код: 17476254</span>
-                                            <p>{elem.product.name} AEG BS18G4-202C 4935478630</p>
+                                            <p>{elem.name} AEG BS18G4-202C 4935478630</p>
                                             <span>
                                                 Можно забрать <b>сегодня</b>
                                             </span>
                                         </div>
                                     </div>
-                                    <div className={styles.product_wrapper__price}>{elem.product.price} р</div>
-                                    <div>{elem.quantity}</div>
-                                    <div>{elem.product.price} р.</div>
+                                    <div className={styles.product_wrapper__price}>{elem.price} р</div>
+                                    <div>1</div>
+                                    <div>{elem.price} р.</div>
                                     <div className={styles.userTools}>
-                                        <AiOutlineHeart /> 
-                                        <MdDeleteOutline onClick={() => handleDelete(elem.product.id)} />
+                                        <MdDeleteOutline onClick={() => handleDelete(elem.id)} />
                                     </div>
                                 </div>
                                 ))
@@ -136,7 +117,7 @@ const page = () => {
                 <div className={styles.cartBill}>
                     <h2>Ваш заказ</h2>
                     <p>
-                        Выбрано товаров: <span>{cartArr?.length}</span>
+                        Выбрано товаров: <span>{favArr?.length}</span>
                     </p>
                     <p>
                         Вес заказа: <span>1кг</span>
