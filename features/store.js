@@ -13,4 +13,4 @@ export const store = configureStore({
       user: userSlice,
       cart: cartSlice,
     }
-})  
+})

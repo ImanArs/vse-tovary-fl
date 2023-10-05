@@ -25,7 +25,6 @@ const CategoryRoutes = () => {
                 cookies.set('routes', res.data);
             })
             .catch((err) => {
-                // console.log(err.response.data);
             });
     };
 

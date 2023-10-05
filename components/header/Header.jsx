@@ -9,15 +9,14 @@ import axios from 'axios';
 import NavBar from './NavBar';
 import Cookies from 'universal-cookie';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeUser } from '@/features/slices/userSlice';
+import { removeUser, setUser } from '@/features/slices/userSlice';
 
 const Header = () => {
     const cookie = new Cookies();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isAuth, setIsAuth] = useState('')
 
     const dispath = useDispatch()
-    const user = useSelector(state => state.user.user)
-    console.log(user);
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -31,10 +30,16 @@ const Header = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [showResults, setShowResults] = useState(false);
 
-    const [isAuth, setIsAuth] = useState('')
-    // let user = localStorage.getItem('access_token') || '';
+
+    const user = useSelector(state => state.user.user)
     useEffect(() => {
-        setIsAuth(localStorage.getItem('access_token'))
+        const userStorage = JSON.parse(localStorage.getItem('user'));
+        console.log(userStorage, "user");
+        const userToUse = userStorage || {};
+        dispath(setUser(userToUse));
+    }, []); 
+        
+    useEffect(() => {
         console.log(isAuth);
         const fetchData = async () => {
             try {
@@ -43,8 +48,7 @@ const Header = () => {
                 });
                 setProducts(response.data);
                 if (response.data.length === 0) {
-                    // Use router.push('/'); if you want to navigate to the home page
-                    // This requires 'next/router' to be imported and configured.
+                    // router.push('/'); 
                 }
             } catch (error) {
                 console.error('Error fetching products:', error);
@@ -52,7 +56,7 @@ const Header = () => {
         };
 
         fetchData();
-    }, [user]);
+    },[])
 
     const filteredProducts = products.filter((product) =>
         product.name.toLowerCase().includes(searchQuery.toLowerCase()),
@@ -89,7 +93,7 @@ const Header = () => {
                         <p>Звонок бесплатный 05:00 – 22:00</p>
                     </div>
                     {
-                        Object.keys(user)?.length != 0 ?
+                        user?.user || localStorage.getItem('user') ?
                             <div className='flex gap-2 items-center'>
                                 <p>{user?.user?.username}</p>
                                 <button onClick={() => handleLogOut()} className='px-[15px] py-[5px] rounded-[5px] bg-[#d60000] text-[#fff]'>Выйти</button>
@@ -129,7 +133,7 @@ const Header = () => {
                         </button>
                     </form>
                        <div className='flex gap-4'>
-                         <Link href="/" className={styles.header_wrapper_btm__tools}>
+                         <Link href="/favourites" className={styles.header_wrapper_btm__tools}>
                             <AiFillHeart color="#d60000" />
                        <span>
                           Избранное

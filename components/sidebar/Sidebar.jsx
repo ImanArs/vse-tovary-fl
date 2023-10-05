@@ -10,6 +10,13 @@ const Sidebar = ({ arr }) => {
   const dispatch = useDispatch();
   const { inputValue1, inputValue2 } = useSelector((state) => state.filter);
 
+
+  const handleReset = () => {
+    setFromPrice('')
+    setToPrice('')
+    dispatch(setInputValue1(''));
+    dispatch(setInputValue2(''));
+  }
   const handleFilterSubmit = (e) => {
     e.preventDefault();
 
@@ -49,7 +56,7 @@ const Sidebar = ({ arr }) => {
           />
         </div>
         <div className={styles.sidebar_filter__btn}>
-          <button type="reset">Очистить</button>
+          <button onClick={() => handleReset()}>Очистить</button>
           <button type="submit">Показать</button>
         </div>
       </form>

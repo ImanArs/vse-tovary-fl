@@ -47,12 +47,14 @@ const Signin = () => {
                 setAccessToken(accessToken);
                 console.log(res.data);
                 dispath(setUser(res.data))
+                localStorage.setItem('user', JSON.stringify(res.data))
                 router.push('/');
             })
             .catch((err) => {
                 console.log(err.response?.data);
             });
     };
+    
 
     return (
         <div className={styles.signup}>

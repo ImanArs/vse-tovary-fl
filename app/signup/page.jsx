@@ -37,10 +37,11 @@ const Signup = () => {
                 localStorage.setItem('access_token', accessToken);
                 console.log(res, 'res');
                 dispatch(setUser(res.data))
+                localStorage.setItem('user', JSON.stringify(res.data))
                 router.push('/');
             })
             .catch((err) => {
-                console.log(err.response.data);
+                console.log(err);
             });
     };
 

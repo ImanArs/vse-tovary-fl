@@ -53,6 +53,7 @@ const ProdSlider = ({ route }) => {
                                 name={item.name}
                                 price={item.price}
                                 productId={item.id}
+                                elem={item}
                                 />
                         </SwiperSlide>
                     ))
