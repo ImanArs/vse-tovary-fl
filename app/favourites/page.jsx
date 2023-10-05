@@ -10,50 +10,41 @@ import { API_URL } from '@/utils/api';
 
 const Page = () => {
     const [inputSearch, setInputSearch] = useState('');
-    const [favArr, setFavArr] = useState(null)
-    const [deleteId, setDeleteId] = useState(null)
-    const [token, setToken] = useState('')
+    const [favArr, setFavArr] = useState(null);
+    const [deleteId, setDeleteId] = useState(null);
+    const [token, setToken] = useState('');
 
+    useEffect(() => {
+        const localAcces = localStorage.getItem('access_token');
+        setToken(localAcces);
+    }, []);
 
     useEffect(() => {
-        const access_token = localStorage.getItem('access_token')
-        setToken(access_token)
-    }, [])
-    useEffect(() => {
-        console.log(token);
-    },[token])
-    useEffect(() => {
-      const favArr = JSON.parse(localStorage.getItem('favourites'))
-      console.log(favArr);
-      setFavArr(favArr)
+        const favArr = JSON.parse(localStorage.getItem('favourites'));
+        setFavArr(favArr);
     }, [deleteId]);
 
-    
     const handleSearchSubmit = (e) => {
-      e.preventDefault();
-      setInputSearch('');
+        e.preventDefault();
+        setInputSearch('');
     };
 
-    let summary = 0
-    favArr?.forEach(elem =>{
-        summary += +elem.price
-    })
+    let summary = 0;
+    favArr?.forEach((elem) => {
+        summary += +elem.price;
+    });
 
     const checkImage = (img) => {
-      if (img.slice(0,4) == 'http') {
-          return img
-      }else {
-          return API_URL+img
-      }
-    }
+        return img.slice(0, 4) === 'http' ? img : API_URL + img;
+    };
+
     const handleDelete = (id) => {
-      setDeleteId(id)
-      const favArr = JSON.parse(localStorage.getItem('favourites')) || [];    
-      const uptFavArr = favArr.filter(item => item.id != id)
-      localStorage.setItem('favourites', JSON.stringify(uptFavArr))
-      console.log(uptFavArr, 'deleteed');
-      setDeleteId('')
-    }
+        setDeleteId(id);
+        const favArr = JSON.parse(localStorage.getItem('favourites')) || [];
+        const uptFavArr = favArr.filter((item) => item.id !== id);
+        localStorage.setItem('favourites', JSON.stringify(uptFavArr));
+        setDeleteId('');
+    };
     return (
         <main className={styles.cart}>
             <div className={styles.cartHeading}>
